@@ -1,6 +1,7 @@
 import processing.serial.*;
 Serial myPort;
 Button myButton1,myButton2,myButton3,myButton4;
+boolean locked = false;
 
 void setup() {
   
@@ -20,23 +21,14 @@ void draw() {
   noStroke();
   background(52, 73, 94);
   rect(0,0,width/3,height);
-  myButton1.drawButton();
-  myButton2.drawButton();
-  myButton3.drawButton();
+  locked = myButton1.drawButton(locked) || myButton2.drawButton(locked) || myButton3.drawButton(locked);
  
   
-  if(mousePressed){
-    myButton1.posX = mouseX;
-    myButton1.posY = mouseY;
-    if(mouseX>(width/3)){
-      myButton1.posX = ((width/3) +10);
-      myButton1.posY = height +10; 
-    }
-    myButton1.drawButton();
-    
-  }
-  if(mouseX>(width/3)){
-      myButton1.posX = ((width/3) +10);
-      myButton1.posY = height +10; 
-    }
+  //if(mousePressed){
+  //  myButton1.posX = mouseX;
+  //  myButton1.posY = mouseY;
+  //}
+  //if(!mousePressed && myButton1.posX>(width/3)){
+  //    myButton1.posX = ((width/3) +10);
+  //  }
 }
