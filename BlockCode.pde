@@ -28,16 +28,5 @@ void draw() {
   background(52, 73, 94);
   rect(0, 0, width/3, height);
   mc.drawButtons();
-  fill(8, 22, 37);
-  noStroke();
-  rect(0, 0, width, height/14);
-  image(buildImg, width-170, 1, width/25, height/15);
-  image(resetImg, width - 110, 1, width/25, height/15);
-  image(exitImg, width-50, 1, width/25, height/15);
-  fill(0);
-  rect(0,height - (height/10), width, height/10);
-  fill(255);
-  textSize(height/40);
-  textAlign(LEFT);
-  text("Build terminal: ", 5,20+ height - (height/10));
+  mc.drawCanvas();
 }

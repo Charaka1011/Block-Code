@@ -11,6 +11,10 @@ class MainController {
   void drawButtons() {
     mainView.drawButtons(getButtonPos(), getButtonLabel());
   }
+  
+  void drawCanvas(){
+    mainView.drawCanvas();
+  }
 
   public ArrayList<Integer> getButtonPos() {
     ArrayList<Button> buttonArray = buttonCollection.getCollection();
