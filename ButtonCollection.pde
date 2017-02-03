@@ -1,6 +1,11 @@
 class ButtonCollection {
-  ArrayList<Button> buttons = new ArrayList<Button>();
+  ArrayList<Button> buttons;
 
+  ButtonCollection()
+  {
+    buttons = new ArrayList<Button>();
+  }
+  
   ButtonCollection(ArrayList<Button> buttons)
   {
     this.buttons = buttons;
