@@ -9,7 +9,8 @@ boolean firstPress = true;
 void setup() {
   printArray(Serial.list());
   //myPort = new Serial(this, Serial.list()[0], 9600);
-  size(900, 500);
+  //size(900, 500);
+  fullScreen();
   buttons.add(new Button(10, 10, "For Loop"));
   buttons.add(new Button(10, 60, "While Loop"));
   buttons.add(new Button(10, 110, "If Selection"));
@@ -32,9 +33,13 @@ void mouseReleased()
   if(lockedIndex >= 0)
   {
     Button b = buttons.get(lockedIndex);
-    if(b.posX>(width/3))
+    if(mouseX>(width/3))
     {
       b.posX = ((width/3) +10);
+    }
+    else
+    {
+      b.posX = 10; 
     }
   }
   lockedIndex = -1;
