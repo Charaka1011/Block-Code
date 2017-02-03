@@ -39,7 +39,8 @@ void mouseReleased()
     }
     else
     {
-      b.posX = 10; 
+      b.posX = b.origX;
+      b.posY = b.origY;
     }
   }
   lockedIndex = -1;
