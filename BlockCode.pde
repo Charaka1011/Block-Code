@@ -2,7 +2,7 @@ import processing.serial.*;
 import java.util.ArrayList;
 
 Serial myPort;
-ArrayList<Button> buttons = new ArrayList<Button>();
+ButtonCollection buttons = new ButtonCollection();
 int lockedIndex = -1;
 boolean firstPress = true;
 
@@ -11,9 +11,9 @@ void setup() {
   //myPort = new Serial(this, Serial.list()[0], 9600);
   //size(900, 500);
   fullScreen();
-  buttons.add(new Button(10, 10, "For Loop"));
-  buttons.add(new Button(10, 60, "While Loop"));
-  buttons.add(new Button(10, 110, "If Selection"));
+  buttons.addButton(new Button(10, 10, "For Loop"));
+  buttons.addButton(new Button(10, 60, "While Loop"));
+  buttons.addButton(new Button(10, 110, "If Selection"));
 }
 
 void draw() {
@@ -21,7 +21,7 @@ void draw() {
   noStroke();
   background(52, 73, 94);
   rect(0, 0, width/3, height);
-  for (Button b : buttons)
+  for (Button b : buttons.getCollection())
   {
     b.drawButton();
   }
@@ -32,7 +32,7 @@ void mouseReleased()
   firstPress = true;
   if(lockedIndex >= 0)
   {
-    Button b = buttons.get(lockedIndex);
+    Button b = buttons.getButton(lockedIndex);
     if(mouseX>(width/3))
     {
       b.posX = ((width/3) +10);
@@ -50,21 +50,18 @@ void mouseDragged()
 {
   if (firstPress)
   {
-    for (Button b : buttons)
+    Button b = buttons.overButton();
+    if(b != null)
     {
-      if (b.overBlock())
-      {
-        lockedIndex = buttons.indexOf(b);
-        b.posX = mouseX-b.width/2;
-        b.posY = mouseY-b.height/2;
-        break;
-      }
+     lockedIndex = buttons.getIndex(b); 
+     b.posX = mouseX-b.width/2;
+     b.posY = mouseY-b.height/2;
     }
   } else
   {
     if(lockedIndex >= 0)
     {
-      Button b = buttons.get(lockedIndex);
+      Button b = buttons.getButton(lockedIndex);
       b.posX = mouseX-b.width/2;
       b.posY = mouseY-b.height/2;
     }

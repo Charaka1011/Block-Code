@@ -1,26 +1,45 @@
-class ButtonCollection extends Button {
+class ButtonCollection {
   ArrayList<Button> buttons = new ArrayList<Button>();
-  
-  ButtonCollection(int posX, int posY, String val)
+
+  ButtonCollection(ArrayList<Button> buttons)
   {
-    super(posX, posY, val);
-  }
-  
-  ButtonCollection(int posX, int posY, String val, ArrayList<Button> buttons)
-  {
-    super(posX, posY, val);
     this.buttons = buttons;
   }
   
   void addButton(Button button)
   {
-    this.buttons.add(button);
+    buttons.add(button);
   }
   
   void removeButton(Button button)
   {
-    this.buttons.remove(button);
+    buttons.remove(button);
   }
   
+  Button getButton(int i)
+  {
+    return buttons.get(i);
+  }
   
+  int getIndex(Button b)
+  {
+    return buttons.indexOf(b);
+  }
+  
+  ArrayList<Button> getCollection()
+  {
+    return buttons; 
+  }
+  
+  Button overButton()
+  {
+   for(Button b : buttons)
+   {
+      if (b.overBlock())
+      {
+        return b;
+      } 
+   }
+   return null;
+  }
 }
