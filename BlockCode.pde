@@ -1,4 +1,3 @@
-import controlP5.*;
 import processing.serial.*;
 import java.util.ArrayList;
 
