@@ -36,7 +36,6 @@ class MainController {
   }
 }
 void mouseReleased() {
-  print("Hello");
   firstPress = true;
   if (lockedIndex >= 0)
   {
