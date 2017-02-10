@@ -15,8 +15,7 @@ void setup() {
   buildImg = loadImage("Build.png");
   resetImg = loadImage("Reset.png");
   exitImg = loadImage("Exit.png");
-  print(width);
-  print(height);
+
   buttons.addButton(new Button(width/100, height/10,"For Loop"));
   buttons.addButton(new Button(width/100,height/10 + 50, "While Loop"));
   buttons.addButton(new Button(width/100,height/10 + 100, "If Selection"));

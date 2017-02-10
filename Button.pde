@@ -1,5 +1,5 @@
 class Button {
-  int ButtonWidth = width/60, ButtonHeight = height/40;
+  int ButtonWidth = width/4, ButtonHeight = height/17;
   final int text = color(236, 236, 236);
   final int button = color(30, 139, 195);
   int posX, posY;

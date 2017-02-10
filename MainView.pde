@@ -1,5 +1,5 @@
 class MainView {
-  private int Bwidth = 280, Bheight = 40;
+  private int Bwidth =  width*3, Bheight = height/3;
   private final int text = color(236, 236, 236);
   private final int button = color(30, 139, 195);
   private int posX, posY;
@@ -22,9 +22,9 @@ class MainView {
       }
       rect(this.posX, this.posY, this.Bwidth, this.Bheight, 30);
       fill(text);
-      textSize(26);
+      textSize(width/47);
       textAlign(CENTER, CENTER);
-      text(val, posX + 140, posY + 15);
+      text(val, posX + width/9, posY + height/50);
     }
   }
 
@@ -50,6 +50,6 @@ class MainView {
     fill(255);
     textSize(height/40);
     textAlign(LEFT);
-    text("Build terminal: ", 5, height/35 + height - (height/10));
+    text("Build terminal: ", 5, height/25 + height - (height/10));
   }
 }

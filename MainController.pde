@@ -41,7 +41,7 @@ void mouseReleased() {
   {
     Button b = buttons.getButton(lockedIndex);
     if (mouseX>(width/3))
-    {
+    {  print(width);
       b.posX = ((width/3) +10);
     } else
     {
