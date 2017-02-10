@@ -50,6 +50,6 @@ class MainView {
     fill(255);
     textSize(height/40);
     textAlign(LEFT);
-    text("Build terminal: ", 5, height/25 + height - (height/10));
+    text("Build terminal: ", 5, height/35 + height - (height/10));
   }
 }
