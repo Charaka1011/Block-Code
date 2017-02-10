@@ -12,27 +12,6 @@ class Button {
     this.origX = posX;
     this.origY = posY;
     this.val = val;
-<<<<<<< HEAD
-    drawButton();
-  }
-
-  void drawButton() {
-    if (overBlock()) {
-      fill(9, 52, 70);
-      stroke(text); 
-    }
-    else
-    {
-      fill(button);
-      stroke(text);
-    }
-    rect(this.posX, this.posY, this.width, this.height, 30);
-    fill(text);
-    textSize(26);
-    textAlign(CENTER, CENTER);
-    text(val, posX + 140, posY + 15);
-=======
->>>>>>> master
   }
   
   boolean overBlock() {
