@@ -8,6 +8,7 @@ int lockedIndex = -1;
 boolean firstPress = true;
 //
 PImage buildImg, resetImg, exitImg;
+Canvas canvas;
 MainController mc = new MainController(buttons);
 
 void setup() {
@@ -15,9 +16,11 @@ void setup() {
   buildImg = loadImage("Build.png");
   resetImg = loadImage("Reset.png");
   exitImg = loadImage("Exit.png");
-  buttons.addButton(new Button(10, 80,"For Loop"));
-  buttons.addButton(new Button(10, 140, "While Loop"));
-  buttons.addButton(new Button(10, 200, "If Selection"));
+  buttons.addButton(new Button(10, 80,"For Loop", true));
+  buttons.addButton(new Button(10, 140, "While Loop", true));
+  buttons.addButton(new Button(10, 200, "If Selection", true));
+  int cHeight = height-((height/10)+(height/14));
+  canvas = new Canvas(width/3, height/14, width-(width/3), cHeight, (cHeight/80)); //PLACEHOLDER: 80 is bWidth * 2
 }
 
 void draw() {

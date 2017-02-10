@@ -4,6 +4,7 @@ class MainController {
   private ButtonCollection buttonCollection;
   int lockedIndex = -1;
   boolean firstPress = true;
+  
   public MainController(ButtonCollection bc) {
     buttonCollection = bc;
   }
@@ -40,9 +41,9 @@ void mouseReleased() {
   if (lockedIndex >= 0)
   {
     Button b = buttons.getButton(lockedIndex);
-    if (mouseX>(width/3))
+    if (canvas.overCanvas())
     {
-      b.posX = ((width/3) +10);
+      canvas.snapToCanvas(buttons, b);
     } else
     {
       b.posX = b.origX;
@@ -62,6 +63,10 @@ void mouseDragged()
       lockedIndex = buttons.getIndex(b); 
       b.posX = mouseX-b.width/2;
       b.posY = mouseY-b.height/2;
+      if(canvas.overCanvas())
+      {
+         canvas.removeFromCanvas(buttons, b);
+      }
     }
   } else
   {

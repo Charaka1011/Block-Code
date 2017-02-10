@@ -4,14 +4,16 @@ class Button {
   final int button = color(30, 139, 195);
   int posX, posY;
   int origX, origY;
+  boolean allowNested;
   String val = "";
 
-  Button(int posX, int posY, String val) {
+  Button(int posX, int posY, String val, boolean allowNested) {
     this.posX = posX;
     this.posY = posY;
     this.origX = posX;
     this.origY = posY;
     this.val = val;
+    this.allowNested = allowNested;
   }
   
   boolean overBlock() {
