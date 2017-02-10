@@ -46,10 +46,10 @@ class MainView {
     image(resetImg, width/25 + 20, 1, width/25, height/15);
     image(exitImg, width-(width/25), 1, width/25, height/15);
     fill(0);
-    rect(0, height - (height/10), width, height/10);
+    rect(0, height-(height/10), width, height/10);
     fill(255);
     textSize(height/40);
     textAlign(LEFT);
-    text("Build terminal: ", 5, 20+ height - (height/10));
+    text("Build terminal: ", 5, height/25 + height - (height/10));
   }
 }
