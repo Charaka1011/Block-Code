@@ -43,8 +43,8 @@ class MainView {
     noStroke();
     rect(0, 0, width, height/14);
     image(buildImg, 10, 1, width/25, height/15);
-    image(resetImg, 70, 1, width/25, height/15);
-    image(exitImg, width-50, 1, width/25, height/15);
+    image(resetImg, width/25 + 20, 1, width/25, height/15);
+    image(exitImg, width-(width/25), 1, width/25, height/15);
     fill(0);
     rect(0, height - (height/10), width, height/10);
     fill(255);
