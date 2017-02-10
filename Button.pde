@@ -12,6 +12,7 @@ class Button {
     this.origX = posX;
     this.origY = posY;
     this.val = val;
+<<<<<<< HEAD
     drawButton();
   }
 
@@ -30,6 +31,8 @@ class Button {
     textSize(26);
     textAlign(CENTER, CENTER);
     text(val, posX + 140, posY + 15);
+=======
+>>>>>>> master
   }
   
   boolean overBlock() {
