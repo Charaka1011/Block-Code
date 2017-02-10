@@ -60,16 +60,16 @@ void mouseDragged()
     if (b != null)
     {
       lockedIndex = buttons.getIndex(b); 
-      b.posX = mouseX-b.width/2;
-      b.posY = mouseY-b.height/2;
+      b.posX = mouseX-b.ButtonWidth/2;
+      b.posY = mouseY-b.ButtonHeight/2;
     }
   } else
   {
     if (lockedIndex >= 0)
     {
       Button b = buttons.getButton(lockedIndex);
-      b.posX = mouseX-b.width/2;
-      b.posY = mouseY-b.height/2;
+      b.posX = mouseX-b.ButtonWidth/2;
+      b.posY = mouseY-b.ButtonHeight/2;
     }
   }  
   firstPress = false;
