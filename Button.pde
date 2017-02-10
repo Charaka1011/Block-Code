@@ -1,23 +1,21 @@
 class Button {
-  int width = 280, height = 40;
+  int ButtonWidth = width/4, ButtonHeight = height/17;
   final int text = color(236, 236, 236);
   final int button = color(30, 139, 195);
   int posX, posY;
   int origX, origY;
-  boolean allowNested;
   String val = "";
 
-  Button(int posX, int posY, String val, boolean allowNested) {
+  Button(int posX, int posY, String val) {
     this.posX = posX;
     this.posY = posY;
     this.origX = posX;
     this.origY = posY;
     this.val = val;
-    this.allowNested = allowNested;
   }
   
   boolean overBlock() {
-    if (mouseX >= posX && mouseX <= posX+this.width && mouseY >= posY && mouseY <= posY+this.height) 
+    if (mouseX >= posX && mouseX <= posX+this.ButtonWidth && mouseY >= posY && mouseY <= posY+this.ButtonHeight) 
     {
       return true;
     } 
