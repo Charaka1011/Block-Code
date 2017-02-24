@@ -5,14 +5,14 @@ class Canvas {
   int indent = 20;
   int rows, spacing;
 
-  public Canvas(int posX, int posY, int width, int height, int rows)
+  public Canvas(int posX, int posY, int width, int height, int spacing)
   {
     this.width = width;
     this.height = height;
     this.posX = posX;
     this.posY = posY;
-    this.rows = rows;
-    this.spacing = height/rows;
+    this.spacing = spacing;
+    this.rows = this.height/spacing;
     initializeIndices(rows);
   }
 
@@ -39,24 +39,32 @@ class Canvas {
   void snapToCanvas(ButtonCollection buttonCollection, Button button)
   {
     // Also need to handle storing button inside SmartButtonCollection once nested
-    int index = mouseY/spacing;
-    if (index >= indices.length)
+    int index = (mouseY-this.posY)/spacing;
+    if (index >= indices.length || mouseY < this.posY)
     {
-      index = indices.length-1;
+      button.posY = button.origY;
+      button.posX = button.origX;
     }
+    else {
     if (indices[index] < 0)
     {
-      button.posY = this.posY + (index*spacing);
+      button.posY = this.posY + (index*spacing) + (spacing/2) - (button.ButtonHeight/2);
       button.posX = this.posX;
     } else
     {
       int button2Index = indices[index];
       Button button2 = buttonCollection.getButton(button2Index);
-      while (indices[index] >= 0 && index < indices.length)
+      while (indices[index] >= 0)
       {
         index++;
+        if(index >= indices.length)
+        {
+          button.posY = button.origY;
+          button.posX = button.origX;
+          return;
+        }
       }
-      button.posY = this.posY + (index*spacing);
+      button.posY = this.posY + (index*spacing) + (spacing/2) - (button.ButtonHeight/2);
       int currentIndent = 0;
       if(button2.posX > this.posX)
       {
@@ -72,6 +80,7 @@ class Canvas {
       }
     }
     indices[index] = buttonCollection.getIndex(button);
+    }
   }
 
   void removeFromCanvas(ButtonCollection buttonCollection, Button button)
