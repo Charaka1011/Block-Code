@@ -105,7 +105,7 @@ class Canvas {
       if (button.posX >= (this.posX+indent))
       {
         button.posX = button.origX;
-        button.posX = button.origY;
+        button.posY = button.origY;
         indices[index] = -1;
         removeNested(buttonCollection, index+1);
       }
