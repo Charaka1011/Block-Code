@@ -44,42 +44,41 @@ class Canvas {
     {
       button.posY = button.origY;
       button.posX = button.origX;
-    }
-    else {
-    if (indices[index] < 0)
-    {
-      button.posY = this.posY + (index*spacing) + (spacing/2) - (button.ButtonHeight/2);
-      button.posX = this.posX;
-    } else
-    {
-      int button2Index = indices[index];
-      Button button2 = buttonCollection.getButton(button2Index);
-      while (indices[index] >= 0)
+    } else {
+      if (indices[index] < 0)
       {
-        index++;
-        if(index >= indices.length)
-        {
-          button.posY = button.origY;
-          button.posX = button.origX;
-          return;
-        }
-      }
-      button.posY = this.posY + (index*spacing) + (spacing/2) - (button.ButtonHeight/2);
-      int currentIndent = 0;
-      if(button2.posX > this.posX)
-      {
-        currentIndent = button2.posX-this.posX;
-      }
-      
-      if (button2.isSmart)
-      {
-        button.posX = this.posX + currentIndent + indent;
+        button.posY = this.posY + (index*spacing) + (spacing/2) - (button.ButtonHeight/2);
+        button.posX = this.posX;
       } else
       {
-        button.posX = this.posX + currentIndent;
+        int button2Index = indices[index];
+        Button button2 = buttonCollection.getButton(button2Index);
+        while (indices[index] >= 0)
+        {
+          index++;
+          if (index >= indices.length)
+          {
+            button.posY = button.origY;
+            button.posX = button.origX;
+            return;
+          }
+        }
+        button.posY = this.posY + (index*spacing) + (spacing/2) - (button.ButtonHeight/2);
+        int currentIndent = 0;
+        if (button2.posX > this.posX)
+        {
+          currentIndent = button2.posX-this.posX;
+        }
+
+        if (button2.isSmart)
+        {
+          button.posX = this.posX + currentIndent + indent;
+        } else
+        {
+          button.posX = this.posX + currentIndent;
+        }
       }
-    }
-    indices[index] = buttonCollection.getIndex(button);
+      indices[index] = buttonCollection.getIndex(button);
     }
   }
 
@@ -92,7 +91,23 @@ class Canvas {
       if (indices[i] == index)
       {
         indices[i] = -1;
+        removeNested(buttonCollection, i+1);    
         return;
+      }
+    }
+  }
+
+  void removeNested(ButtonCollection buttonCollection, int index)
+  {
+    if (index < indices.length && indices[index] >= 0)
+    {
+      Button button = buttonCollection.getButton(indices[index]);
+      if (button.posX >= (this.posX+indent))
+      {
+        button.posX = button.origX;
+        button.posX = button.origY;
+        indices[index] = -1;
+        removeNested(buttonCollection, index+1);
       }
     }
   }

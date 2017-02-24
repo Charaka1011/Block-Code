@@ -3,7 +3,7 @@ class Button {
   final int text = color(236, 236, 236);
   final int button = color(30, 139, 195);
   int posX, posY;
-  int origX, origY;
+  final int origX, origY;
   String val = "";
   boolean isSmart;
 
