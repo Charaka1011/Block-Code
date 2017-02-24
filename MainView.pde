@@ -1,5 +1,6 @@
 class MainView {
-  private int Bwidth =  width*3, Bheight = height/3;
+  private Button bref = new Button();
+  private int Bwidth =  bref.buttonWidth, Bheight = bref.buttonHeight;
   private final int text = color(236, 236, 236);
   private final int button = color(30, 139, 195);
   private int posX = 0, posY = 0;
@@ -60,9 +61,8 @@ class MainView {
     textSize(height/40);
     textAlign(LEFT);
     text("Build terminal: ", 5, height/25 + height - (height/10));
-    drawTextBoxes();
+    
   }
 
-  void drawTextBoxes() {
-  }
+  
 }
