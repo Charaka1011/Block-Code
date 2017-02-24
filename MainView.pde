@@ -2,18 +2,27 @@ class MainView {
   private int Bwidth =  width*3, Bheight = height/3;
   private final int text = color(236, 236, 236);
   private final int button = color(30, 139, 195);
-  private int posX, posY;
+  private int posX = 0, posY = 0;
   private String val = "";
-  // private MainController mainC = new MainController();
+  private boolean isSmart = false;
 
 
-  public void drawButtons(ArrayList<Integer> pos, ArrayList<String> labels) {
+  public void drawButtons(ArrayList<Integer> pos, ArrayList<String> labels, ArrayList<Boolean> isSmart) {
     int j = 0;
     for (int i =0; i<labels.size(); i++) {
       this.posX = pos.get(j++);
       this.posY = pos.get(j++);
       this.val = labels.get(i);
-      if (overBlock()) {
+      this.isSmart = isSmart.get(i);
+      if (this.isSmart) {
+        if (overBlock()) {
+          fill(250, 125, 34);
+          stroke(text);
+        } else {
+          fill(249, 105, 14);
+          stroke(text);
+        }
+      } else if (overBlock()) {
         fill(9, 52, 70);
         stroke(text);
       } else {
@@ -51,5 +60,9 @@ class MainView {
     textSize(height/40);
     textAlign(LEFT);
     text("Build terminal: ", 5, height/25 + height - (height/10));
+    drawTextBoxes();
+  }
+
+  void drawTextBoxes() {
   }
 }
