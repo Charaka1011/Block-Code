@@ -26,7 +26,9 @@ void setup() {
   buttons.addButton(new Button(width/100,height/10 + 50, "While Loop", true));
   buttons.addButton(new Button(width/100,height/10 + 100, "If Selection", true));
   int cHeight = height-((height/10)+(height/14));
-  canvas = new Canvas(width/3, height/14, width-(width/3), cHeight, (cHeight/80)); //PLACEHOLDER: 80 is bWidth * 2
+  canvas = new Canvas(width/3, height/14, width-(width/3), cHeight, (int)((float)(3/2)*(height/17))); 
+  //Values for canvas are worked out from MainController.drawCanvas() and ButtonHeight
+  //Could be better to have variables rather than magic numbers
 }
 
 void draw() {
@@ -38,4 +40,5 @@ void draw() {
   rect(0, 0, width/3, height);
   mc.drawButtons();
   mc.drawCanvas();
+
 }
