@@ -4,17 +4,32 @@ class MainController {
   private ButtonCollection buttonCollection;
   int lockedIndex = -1;
   boolean firstPress = true;
-  
   public MainController(ButtonCollection bc) {
     buttonCollection = bc;
   }
 
   void drawButtons() {
-    mainView.drawButtons(getButtonPos(), getButtonLabel());
+    mainView.drawButtons(getButtonPos(), getButtonLabel(), getIsSmart());
   }
-  
-  void drawCanvas(){
+
+  void drawCanvas() {
     mainView.drawCanvas();
+  }
+
+  public ArrayList<Boolean> getIsSmart() {
+    ArrayList<Button> buttonArray = buttonCollection.getCollection();
+    ArrayList<Boolean> isSmart = new ArrayList<Boolean>();
+    for (int i = 0; i<buttonArray.size(); i++) {
+      if (buttonArray.get(i).isSmart) {
+        isSmart.add(true);
+        Button btemp = buttonArray.get(i);
+        TextBox Temp = btemp.tb;
+        Temp.drawTextbox();
+      } else {
+        isSmart.add(false);
+      }
+    }
+    return isSmart;
   }
 
   public ArrayList<Integer> getButtonPos() {
@@ -41,14 +56,15 @@ void mouseReleased() {
   if (lockedIndex >= 0)
   {
     Button b = buttons.getButton(lockedIndex);
-    if (canvas.overCanvas())
-    {
-      canvas.snapToCanvas(buttons, b);
+    if (mouseX>(width/3))
+    { 
+      b.posX = ((width/3) +10);
     } else
     {
       b.posX = b.origX;
       b.posY = b.origY;
     }
+     b.tb.update(b.posX, b.posY);
   }
   lockedIndex = -1;
 }
@@ -61,20 +77,18 @@ void mouseDragged()
     if (b != null)
     {
       lockedIndex = buttons.getIndex(b); 
-      b.posX = mouseX-b.ButtonWidth/2;
-      b.posY = mouseY-b.ButtonHeight/2;
-      if(canvas.overCanvas())
-      {
-         canvas.removeFromCanvas(buttons, b);
-      }
+      b.posX = mouseX-b.buttonWidth/2;
+      b.posY = mouseY-b.buttonHeight/2;
+      b.tb.update(b.posX, b.posY);
     }
   } else
   {
     if (lockedIndex >= 0)
     {
       Button b = buttons.getButton(lockedIndex);
-      b.posX = mouseX-b.ButtonWidth/2;
-      b.posY = mouseY-b.ButtonHeight/2;
+      b.posX = mouseX-b.buttonWidth/2;
+      b.posY = mouseY-b.buttonHeight/2;
+      b.tb.update(b.posX, b.posY);
     }
   }  
   firstPress = false;
