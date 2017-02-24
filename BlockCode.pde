@@ -3,6 +3,9 @@ import java.util.ArrayList;
 
 Serial myPort;
 ButtonCollection buttons = new ButtonCollection();
+MenuButton exitButton;
+MenuButton buildButton;
+MenuButton resetButton;
 //variables needed for the listeners inside the controller class
 int lockedIndex = -1;
 boolean firstPress = true;
@@ -16,6 +19,9 @@ void setup() {
   buildImg = loadImage("Build.png");
   resetImg = loadImage("Reset.png");
   exitImg = loadImage("Exit.png");
+  buildButton = new MenuButton(10, 1, buildImg);
+  resetButton = new MenuButton( width/25 + 20, 1, resetImg);
+  exitButton = new MenuButton(width-(width/25), 1, exitImg);
   buttons.addButton(new Button(width/100, height/10,"For Loop", true));
   buttons.addButton(new Button(width/100,height/10 + 50, "While Loop", true));
   buttons.addButton(new Button(width/100,height/10 + 100, "If Selection", true));

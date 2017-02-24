@@ -42,9 +42,9 @@ class MainView {
     fill(8, 22, 37);
     noStroke();
     rect(0, 0, width, height/14);
-    image(buildImg, 10, 1, width/25, height/15);
-    image(resetImg, width/25 + 20, 1, width/25, height/15);
-    image(exitImg, width-(width/25), 1, width/25, height/15);
+    buildButton.drawButton();
+    resetButton.drawButton();
+    exitButton.drawButton();
     fill(0);
     rect(0, height-(height/10), width, height/10);
     fill(255);

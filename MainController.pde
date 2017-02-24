@@ -5,6 +5,7 @@ class MainController {
   int lockedIndex = -1;
   boolean firstPress = true;
   
+  
   public MainController(ButtonCollection bc) {
     buttonCollection = bc;
   }
@@ -78,4 +79,17 @@ void mouseDragged()
     }
   }  
   firstPress = false;
+}
+
+void mousePressed(){
+  if(exitButton.overBlock()){
+    exit();
+  }else if(resetButton.overBlock()){
+    for(Button b: buttons.getCollection()){
+      b.posX = b.origX;
+      b.posY = b.origY;
+    }
+  }else if(buildButton.overBlock()){
+    
+  }
 }
