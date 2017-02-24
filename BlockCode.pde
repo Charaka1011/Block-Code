@@ -16,9 +16,9 @@ void setup() {
   buildImg = loadImage("Build.png");
   resetImg = loadImage("Reset.png");
   exitImg = loadImage("Exit.png");
-  buttons.addButton(new Button(width/100, height/10,"For Loop"));
-  buttons.addButton(new Button(width/100,height/10 + 50, "While Loop"));
-  buttons.addButton(new Button(width/100,height/10 + 100, "If Selection"));
+  buttons.addButton(new Button(width/100, height/10,"For Loop", true));
+  buttons.addButton(new Button(width/100,height/10 + 50, "While Loop", true));
+  buttons.addButton(new Button(width/100,height/10 + 100, "If Selection", true));
   int cHeight = height-((height/10)+(height/14));
   canvas = new Canvas(width/3, height/14, width-(width/3), cHeight, (cHeight/80)); //PLACEHOLDER: 80 is bWidth * 2
 }

@@ -5,13 +5,15 @@ class Button {
   int posX, posY;
   int origX, origY;
   String val = "";
+  boolean isSmart;
 
-  Button(int posX, int posY, String val) {
+  Button(int posX, int posY, String val, boolean isSmart) {
     this.posX = posX;
     this.posY = posY;
     this.origX = posX;
     this.origY = posY;
     this.val = val;
+    this.isSmart = isSmart;
   }
   
   boolean overBlock() {
