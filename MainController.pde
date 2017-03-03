@@ -4,6 +4,8 @@ class MainController {
   private ButtonCollection buttonCollection;
   int lockedIndex = -1;
   boolean firstPress = true;
+
+
   public MainController(ButtonCollection bc) {
     buttonCollection = bc;
   }
@@ -64,6 +66,7 @@ void mouseReleased() {
       b.posX = b.origX;
       b.posY = b.origY;
     }
+    if(b.isSmart)
      b.tb.update(b.posX, b.posY);
   }
   lockedIndex = -1;
@@ -79,6 +82,7 @@ void mouseDragged()
       lockedIndex = buttons.getIndex(b); 
       b.posX = mouseX-b.buttonWidth/2;
       b.posY = mouseY-b.buttonHeight/2;
+      if(b.isSmart)
       b.tb.update(b.posX, b.posY);
     }
   } else
@@ -88,8 +92,24 @@ void mouseDragged()
       Button b = buttons.getButton(lockedIndex);
       b.posX = mouseX-b.buttonWidth/2;
       b.posY = mouseY-b.buttonHeight/2;
+      if(b.isSmart)
       b.tb.update(b.posX, b.posY);
     }
   }  
   firstPress = false;
+}
+
+void mousePressed(){
+  if(exitButton.overBlock()){
+    exit();
+  }else if(resetButton.overBlock()){
+    for(Button b: buttons.getCollection()){
+      b.posX = b.origX;
+      b.posY = b.origY;
+      if(b.isSmart)
+      b.tb.update(b.posX, b.posY);
+    }
+  }else if(buildButton.overBlock()){
+    
+  }
 }
