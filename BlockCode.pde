@@ -74,4 +74,10 @@ void mouseDragged(){
 
 void mousePressed(){
   mc.mousePressedController();
+}  
+
+void keyPressed(){
+  if(key>'0'&& key < '9'){
+    
+  }
 }

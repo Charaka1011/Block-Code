@@ -102,6 +102,7 @@ class MainController {
     firstPress = false;
   }
   void mousePressedController() {
+    
     if (exitButton.overBlock()) {
       exit();
     } else if (resetButton.overBlock()) {

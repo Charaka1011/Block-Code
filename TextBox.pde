@@ -6,7 +6,7 @@ class TextBox {
   String mainText = "i ";
   String userInput = "";
   Button b;
-  TextBox(int x, int y, Button b) {
+  TextBox(int x, int y, Button b){
     posX = x + b.buttonWidth;
     posY = y;
     drawTextbox();
