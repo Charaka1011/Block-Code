@@ -52,70 +52,66 @@ class MainController {
     }
     return values;
   }
-}
-void mouseReleased() {
-  firstPress = true;
-  if (lockedIndex >= 0)
-  {
-    Button b = buttons.getButton(lockedIndex);
-    if (mouseX>(width/3))
-    { 
-      b.posX = ((width/3) +10);
-    } else
-    {
-      b.posX = b.origX;
-      b.posY = b.origY;
-    }
-
-    if(b.isSmart)
-
-     b.tb.update(b.posX, b.posY);
-  }
-  lockedIndex = -1;
-}
-
-void mouseDragged()
-{
-  if (firstPress)
-  {
-    Button b = buttons.overButton();
-    if (b != null)
-    {
-      lockedIndex = buttons.getIndex(b); 
-      b.posX = mouseX-b.buttonWidth/2;
-      b.posY = mouseY-b.buttonHeight/2;
-
-      if(b.isSmart)
-
-      b.tb.update(b.posX, b.posY);
-    }
-  } else
-  {
+  void mouseReleasedController() {
+    firstPress = true;
     if (lockedIndex >= 0)
     {
       Button b = buttons.getButton(lockedIndex);
-      b.posX = mouseX-b.buttonWidth/2;
-      b.posY = mouseY-b.buttonHeight/2;
+      if (mouseX>(width/3))
+      { 
+        b.posX = ((width/3) +10);
+      } else
+      {
+        b.posX = b.origX;
+        b.posY = b.origY;
+      }
 
-      if(b.isSmart)
+      if (b.isSmart)
 
-      b.tb.update(b.posX, b.posY);
+        b.tb.update(b.posX, b.posY);
     }
-  }  
-  firstPress = false;
-}
+    lockedIndex = -1;
+  }
+  void mouseDraggedController() {
+    if (firstPress)
+    {
+      Button b = buttons.overButton();
+      if (b != null)
+      {
+        lockedIndex = buttons.getIndex(b); 
+        b.posX = mouseX-b.buttonWidth/2;
+        b.posY = mouseY-b.buttonHeight/2;
 
-void mousePressed(){
-  if(exitButton.overBlock()){
-    exit();
-  }else if(resetButton.overBlock()){
-    for(Button b: buttons.getCollection()){
-      b.posX = b.origX;
-      b.posY = b.origY;
-      if(b.isSmart)
-      b.tb.update(b.posX, b.posY);
+        if (b.isSmart)
+
+          b.tb.update(b.posX, b.posY);
+      }
+    } else
+    {
+      if (lockedIndex >= 0)
+      {
+        Button b = buttons.getButton(lockedIndex);
+        b.posX = mouseX-b.buttonWidth/2;
+        b.posY = mouseY-b.buttonHeight/2;
+
+        if (b.isSmart)
+
+          b.tb.update(b.posX, b.posY);
+      }
+    }  
+    firstPress = false;
+  }
+  void mousePressedController() {
+    if (exitButton.overBlock()) {
+      exit();
+    } else if (resetButton.overBlock()) {
+      for (Button b : buttons.getCollection()) {
+        b.posX = b.origX;
+        b.posY = b.origY;
+        if (b.isSmart)
+          b.tb.update(b.posX, b.posY);
+      }
+    } else if (buildButton.overBlock()) {
     }
-  }else if(buildButton.overBlock()){
-    
   }
 }

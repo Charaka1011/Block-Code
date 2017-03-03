@@ -11,8 +11,7 @@ MenuButton exitButton;
 MenuButton buildButton;
 MenuButton resetButton;
 
-MainController mc = new MainController(buttons);
-MainView mv = new MainView();
+
 
 Canvas canvas;
 
@@ -63,4 +62,16 @@ void draw() {
   mc.drawButtons();
   mc.drawCanvas();
 
+}
+
+void mouseReleased() {
+  mc.mouseReleasedController();
+}
+
+void mouseDragged(){
+   mc.mouseDraggedController();
+}
+
+void mousePressed(){
+  mc.mousePressedController();
 }
