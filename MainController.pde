@@ -66,7 +66,9 @@ void mouseReleased() {
       b.posX = b.origX;
       b.posY = b.origY;
     }
+
     if(b.isSmart)
+
      b.tb.update(b.posX, b.posY);
   }
   lockedIndex = -1;
@@ -82,7 +84,9 @@ void mouseDragged()
       lockedIndex = buttons.getIndex(b); 
       b.posX = mouseX-b.buttonWidth/2;
       b.posY = mouseY-b.buttonHeight/2;
+
       if(b.isSmart)
+
       b.tb.update(b.posX, b.posY);
     }
   } else
@@ -92,7 +96,9 @@ void mouseDragged()
       Button b = buttons.getButton(lockedIndex);
       b.posX = mouseX-b.buttonWidth/2;
       b.posY = mouseY-b.buttonHeight/2;
+
       if(b.isSmart)
+
       b.tb.update(b.posX, b.posY);
     }
   }  

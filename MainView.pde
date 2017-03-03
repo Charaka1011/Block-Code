@@ -61,7 +61,14 @@ class MainView {
     textSize(height/40);
     textAlign(LEFT);
     text("Build terminal: ", 5, height/25 + height - (height/10));
+
     
+
+    drawTextBoxes();
+  }
+
+  void drawTextBoxes() {
+
   }
 
   

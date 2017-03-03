@@ -6,6 +6,7 @@ Serial myPort;
 
 ButtonCollection buttons = new ButtonCollection();
 
+
 MenuButton exitButton;
 MenuButton buildButton;
 MenuButton resetButton;
@@ -14,6 +15,10 @@ MainController mc = new MainController(buttons);
 MainView mv = new MainView();
 
 Canvas canvas;
+
+
+MainController mc = new MainController(buttons);
+MainView mv = new MainView();
 
 
 //variables needed for the listeners inside the controller class
@@ -38,6 +43,7 @@ void setup() {
   canvas = new Canvas(width/3, height/14, width-(width/3), cHeight, (int)((float)(3/2)*(height/17))); 
   //Values for canvas are worked out from MainController.drawCanvas() and ButtonHeight
   //Could be better to have variables rather than magic numbers
+
 
   buttons.addButton(new Button(width/100, height/10, "For Loop", 1));
   buttons.addButton(new Button(width/100, height/10 + 100, "While Loop", 1));
