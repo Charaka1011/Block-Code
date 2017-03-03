@@ -1,5 +1,6 @@
 class MainView {
-  private int Bwidth =  width*3, Bheight = height/3;
+  private Button bref = new Button();
+  private int Bwidth =  bref.buttonWidth, Bheight = bref.buttonHeight;
   private final int text = color(236, 236, 236);
   private final int button = color(30, 139, 195);
   private int posX = 0, posY = 0;
@@ -51,18 +52,24 @@ class MainView {
     fill(8, 22, 37);
     noStroke();
     rect(0, 0, width, height/14);
-    image(buildImg, 10, 1, width/25, height/15);
-    image(resetImg, width/25 + 20, 1, width/25, height/15);
-    image(exitImg, width-(width/25), 1, width/25, height/15);
+    buildButton.drawButton();
+    resetButton.drawButton();
+    exitButton.drawButton();
     fill(0);
     rect(0, height-(height/10), width, height/10);
     fill(255);
     textSize(height/40);
     textAlign(LEFT);
     text("Build terminal: ", 5, height/25 + height - (height/10));
+
+    
+
     drawTextBoxes();
   }
 
   void drawTextBoxes() {
+
   }
+
+  
 }

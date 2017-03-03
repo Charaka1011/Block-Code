@@ -1,12 +1,21 @@
 class Button {
+
   int buttonWidth = width/4, buttonHeight = height/17;
+
   final int text = color(236, 236, 236);
   final int button = color(30, 139, 195);
   int posX, posY;
-  int origX, origY;
+  final int origX, origY;
   String val = "";
   boolean isSmart = false;
   public TextBox tb;
+
+  
+  Button(){
+    //just for ref
+    this(0,0,"");
+  }
+
 
   Button(int posX, int posY, String val) {
     this.posX = posX;
