@@ -35,7 +35,19 @@ class ButtonCollection {
   {
     return buttons;
   }
-
+  Button overTextBox(){
+    for (Button b : buttons)
+    {
+      if(b.isSmart){
+        if (b.tb.overTextBox()){
+          
+          return b;
+        }
+      }
+    }
+     
+    return null;
+  }
   Button overButton()
   {
     for (Button b : buttons)
@@ -47,4 +59,13 @@ class ButtonCollection {
     }
     return null;
   }
+  
+  void stopBlinking(){
+   for (Button b : buttons)
+    {
+      if(b.isSmart){
+        b.tb.setUserInput('b');
+      }
+  }  
+}
 }

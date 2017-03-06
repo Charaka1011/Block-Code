@@ -4,7 +4,9 @@ class MainController {
   private ButtonCollection buttonCollection;
   int lockedIndex = -1;
   boolean firstPress = true;
-
+  TextBox textBoxSelected = null;
+  boolean bcBool = false;
+  double goal = 500,pastM;
 
   public MainController(ButtonCollection bc) {
     buttonCollection = bc;
@@ -102,17 +104,57 @@ class MainController {
     firstPress = false;
   }
   void mousePressedController() {
-    
+    TextBox tb;
+    Button smartB = buttonCollection.overTextBox();
+    if(smartB!=null){
+      tb = smartB.tb;
+      if(textBoxSelected!=null)
+      textBoxSelected.setUserInput('b');
+      textBoxSelected = tb;
+    }else{
+      textBoxSelected = null;
+      buttonCollection.stopBlinking();
+    }
     if (exitButton.overBlock()) {
       exit();
     } else if (resetButton.overBlock()) {
       for (Button b : buttons.getCollection()) {
         b.posX = b.origX;
         b.posY = b.origY;
-        if (b.isSmart)
+        if (b.isSmart){
+          b.tb.displayInput = "";
           b.tb.update(b.posX, b.posY);
+        }
       }
     } else if (buildButton.overBlock()) {
     }
+    
   }
+  void keyPressedHandler(){
+    if(key==BACKSPACE || key == DELETE){
+     if(textBoxSelected!=null){
+      textBoxSelected.setUserInput('\0');
+    }
+    }else if(textBoxSelected!=null){
+    textBoxSelected.setUserInput(key);
+    }
+    bcBool = false;
+  }
+  
+  void blink(){
+    if(!bcBool && millis()-pastM>goal){
+      pastM = millis();
+      if(textBoxSelected!=null){
+        textBoxSelected.displayInput = textBoxSelected.displayInput + "|";
+        bcBool = true;
+      }
+    }else if(millis()-pastM>goal){
+      pastM = millis();
+      if(textBoxSelected!=null){
+        bcBool = false;
+        textBoxSelected.setUserInput('b');
+      }
+      
+    }
+}
 }

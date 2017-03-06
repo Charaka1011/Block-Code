@@ -61,7 +61,7 @@ void draw() {
   rect(0, 0, width/3, height);
   mc.drawButtons();
   mc.drawCanvas();
-
+  mc.blink();
 }
 
 void mouseReleased() {
@@ -77,7 +77,7 @@ void mousePressed(){
 }  
 
 void keyPressed(){
-  if(key>'0'&& key < '9'){
-    
+  if(key>='0'&& key <= '9'||key == BACKSPACE || key==DELETE){
+    mc.keyPressedHandler();
   }
 }
