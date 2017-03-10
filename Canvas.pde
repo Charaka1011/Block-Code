@@ -38,7 +38,6 @@ class Canvas {
 
   void snapToCanvas(ButtonCollection buttonCollection, Button button)
   {
-    // Also need to handle storing button inside SmartButtonCollection once nested
     int index = (mouseY-this.posY)/spacing;
     if (index >= indices.length || mouseY < this.posY)
     {
@@ -70,10 +69,17 @@ class Canvas {
           currentIndent = button2.posX-this.posX;
         }
 
-        if (button2.isSmart)
+        Button previousButton = buttonCollection.getButton(indices[index-1]);
+        //Check if previous button (which isn't the button2) is indented, if not don't indent current button
+        if(previousButton != button2 && previousButton.posX < this.posX + currentIndent + indent)
+        {
+          button.posX = previousButton.posX;
+        }
+        else if (button2.isSmart)
         {
           button.posX = this.posX + currentIndent + indent;
-        } else
+        } 
+        else
         {
           button.posX = this.posX + currentIndent;
         }
@@ -106,6 +112,10 @@ class Canvas {
       {
         button.posX = button.origX;
         button.posY = button.origY;
+        if (button.isSmart)
+        {
+          button.tb.update(button.posX, button.posY);
+        }
         indices[index] = -1;
         removeNested(buttonCollection, index+1);
       }
