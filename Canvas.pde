@@ -106,6 +106,10 @@ class Canvas {
       {
         button.posX = button.origX;
         button.posY = button.origY;
+        if (button.isSmart)
+        {
+          button.tb.update(button.posX, button.posY);
+        }
         indices[index] = -1;
         removeNested(buttonCollection, index+1);
       }
