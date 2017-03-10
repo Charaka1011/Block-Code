@@ -4,6 +4,7 @@ class Canvas {
   int[] indices;
   int indent = 40;
   int rows, spacing;
+  int freeIndex = 0;
 
   public Canvas(int posX, int posY, int width, int height, int spacing)
   {
@@ -46,6 +47,7 @@ class Canvas {
     } else {
       if (indices[index] < 0)
       {
+        index = freeIndex;
         button.posY = this.posY + (index*spacing) + (spacing/2) - (button.buttonHeight/2);
         button.posX = this.posX;
       } else
@@ -85,6 +87,7 @@ class Canvas {
         }
       }
       indices[index] = buttonCollection.getIndex(button);
+      freeIndex = index+1;
     }
   }
 
@@ -97,7 +100,8 @@ class Canvas {
       if (indices[i] == index)
       {
         indices[i] = -1;
-        removeNested(buttonCollection, i+1);    
+        removeNested(buttonCollection, i+1); 
+        freeIndex = i;
         return;
       }
     }
@@ -125,5 +129,6 @@ class Canvas {
   void resetCanvas()
   {
     resetIndices();
+    freeIndex = 0;
   }
 }
