@@ -1,19 +1,29 @@
 class MainView {
-  private int Bwidth =  width*3, Bheight = height/3;
+  private Button bref = new Button();
+  private int Bwidth = bref.buttonWidth*12, Bheight = bref.buttonHeight*17/2;
   private final int text = color(236, 236, 236);
   private final int button = color(30, 139, 195);
-  private int posX, posY;
+  private int posX = 0, posY = 0;
   private String val = "";
-  // private MainController mainC = new MainController();
+  private boolean isSmart = false, blinkC = false;
+  private double time = 0,goal = 0;
 
-
-  public void drawButtons(ArrayList<Integer> pos, ArrayList<String> labels) {
+  public void drawButtons(ArrayList<Integer> pos, ArrayList<String> labels, ArrayList<Boolean> isSmart) {
     int j = 0;
     for (int i =0; i<labels.size(); i++) {
       this.posX = pos.get(j++);
       this.posY = pos.get(j++);
       this.val = labels.get(i);
-      if (overBlock()) {
+      this.isSmart = isSmart.get(i);
+      if (this.isSmart) {
+        if (overBlock()) {
+          fill(250, 125, 34);
+          stroke(text);
+        } else {
+          fill(249, 105, 14);
+          stroke(text);
+        }
+      } else if (overBlock()) {
         fill(9, 52, 70);
         stroke(text);
       } else {
@@ -42,9 +52,9 @@ class MainView {
     fill(8, 22, 37);
     noStroke();
     rect(0, 0, width, height/14);
-    image(buildImg, 10, 1, width/25, height/15);
-    image(resetImg, width/25 + 20, 1, width/25, height/15);
-    image(exitImg, width-(width/25), 1, width/25, height/15);
+    buildButton.drawButton();
+    resetButton.drawButton();
+    exitButton.drawButton();
     fill(0);
     rect(0, height-(height/10), width, height/10);
     fill(255);
@@ -52,4 +62,6 @@ class MainView {
     textAlign(LEFT);
     text("Build terminal: ", 5, height/25 + height - (height/10));
   }
-}
+ 
+ 
+  }

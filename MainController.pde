@@ -4,17 +4,36 @@ class MainController {
   private ButtonCollection buttonCollection;
   int lockedIndex = -1;
   boolean firstPress = true;
-  
+  TextBox textBoxSelected = null;
+  boolean bcBool = false;
+  double goal = 500,pastM;
+
   public MainController(ButtonCollection bc) {
     buttonCollection = bc;
   }
 
   void drawButtons() {
-    mainView.drawButtons(getButtonPos(), getButtonLabel());
+    mainView.drawButtons(getButtonPos(), getButtonLabel(), getIsSmart());
   }
-  
-  void drawCanvas(){
+
+  void drawCanvas() {
     mainView.drawCanvas();
+  }
+
+  public ArrayList<Boolean> getIsSmart() {
+    ArrayList<Button> buttonArray = buttonCollection.getCollection();
+    ArrayList<Boolean> isSmart = new ArrayList<Boolean>();
+    for (int i = 0; i<buttonArray.size(); i++) {
+      if (buttonArray.get(i).isSmart) {
+        isSmart.add(true);
+        Button btemp = buttonArray.get(i);
+        TextBox Temp = btemp.tb;
+        Temp.drawTextbox();
+      } else {
+        isSmart.add(false);
+      }
+    }
+    return isSmart;
   }
 
   public ArrayList<Integer> getButtonPos() {
@@ -35,47 +54,107 @@ class MainController {
     }
     return values;
   }
-}
-void mouseReleased() {
-  firstPress = true;
-  if (lockedIndex >= 0)
-  {
-    Button b = buttons.getButton(lockedIndex);
-    if (canvas.overCanvas())
-    {
-      canvas.snapToCanvas(buttons, b);
-    } else
-    {
-      b.posX = b.origX;
-      b.posY = b.origY;
-    }
-  }
-  lockedIndex = -1;
-}
-
-void mouseDragged()
-{
-  if (firstPress)
-  {
-    Button b = buttons.overButton();
-    if (b != null)
-    {
-      lockedIndex = buttons.getIndex(b); 
-      b.posX = mouseX-b.ButtonWidth/2;
-      b.posY = mouseY-b.ButtonHeight/2;
-      if(canvas.overCanvas())
-      {
-         canvas.removeFromCanvas(buttons, b);
-      }
-    }
-  } else
-  {
+  void mouseReleasedController() {
+    firstPress = true;
     if (lockedIndex >= 0)
     {
       Button b = buttons.getButton(lockedIndex);
-      b.posX = mouseX-b.ButtonWidth/2;
-      b.posY = mouseY-b.ButtonHeight/2;
+      if (mouseX>(width/3))
+      { 
+        b.posX = ((width/3) +10);
+      } else
+      {
+        b.posX = b.origX;
+        b.posY = b.origY;
+      }
+
+      if (b.isSmart)
+
+        b.tb.update(b.posX, b.posY);
     }
-  }  
-  firstPress = false;
+    lockedIndex = -1;
+  }
+  void mouseDraggedController() {
+    if (firstPress)
+    {
+      Button b = buttons.overButton();
+      if (b != null)
+      {
+        lockedIndex = buttons.getIndex(b); 
+        b.posX = mouseX-b.buttonWidth/2;
+        b.posY = mouseY-b.buttonHeight/2;
+
+        if (b.isSmart)
+
+          b.tb.update(b.posX, b.posY);
+      }
+    } else
+    {
+      if (lockedIndex >= 0)
+      {
+        Button b = buttons.getButton(lockedIndex);
+        b.posX = mouseX-b.buttonWidth/2;
+        b.posY = mouseY-b.buttonHeight/2;
+
+        if (b.isSmart)
+
+          b.tb.update(b.posX, b.posY);
+      }
+    }  
+    firstPress = false;
+  }
+  void mousePressedController() {
+    TextBox tb;
+    Button smartB = buttonCollection.overTextBox();
+    if(smartB!=null){
+      tb = smartB.tb;
+      if(textBoxSelected!=null)
+      textBoxSelected.setUserInput('b');
+      textBoxSelected = tb;
+    }else{
+      textBoxSelected = null;
+      buttonCollection.stopBlinking();
+    }
+    if (exitButton.overBlock()) {
+      exit();
+    } else if (resetButton.overBlock()) {
+      for (Button b : buttons.getCollection()) {
+        b.posX = b.origX;
+        b.posY = b.origY;
+        if (b.isSmart){
+          b.tb.displayInput = "";
+          b.tb.update(b.posX, b.posY);
+        }
+      }
+    } else if (buildButton.overBlock()) {
+    }
+    
+  }
+  void keyPressedHandler(){
+    if(key==BACKSPACE || key == DELETE){
+     if(textBoxSelected!=null){
+      textBoxSelected.setUserInput('\0');
+    }
+    }else if(textBoxSelected!=null){
+    textBoxSelected.setUserInput(key);
+    }
+    bcBool = false;
+  }
+  
+  void blink(){
+    if(!bcBool && millis()-pastM>goal){
+      pastM = millis();
+      if(textBoxSelected!=null){
+        textBoxSelected.displayInput = textBoxSelected.displayInput + "|";
+        bcBool = true;
+      }
+    }else if(millis()-pastM>goal){
+      pastM = millis();
+      if(textBoxSelected!=null){
+        bcBool = false;
+        textBoxSelected.setUserInput('b');
+      }
+      
+    }
+}
 }

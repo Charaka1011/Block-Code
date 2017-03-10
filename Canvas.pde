@@ -47,7 +47,7 @@ class Canvas {
     } else {
       if (indices[index] < 0)
       {
-        button.posY = this.posY + (index*spacing) + (spacing/2) - (button.ButtonHeight/2);
+        button.posY = this.posY + (index*spacing) + (spacing/2) - (button.buttonHeight/2);
         button.posX = this.posX;
       } else
       {
@@ -63,7 +63,7 @@ class Canvas {
             return;
           }
         }
-        button.posY = this.posY + (index*spacing) + (spacing/2) - (button.ButtonHeight/2);
+        button.posY = this.posY + (index*spacing) + (spacing/2) - (button.buttonHeight/2);
         int currentIndent = 0;
         if (button2.posX > this.posX)
         {
