@@ -7,12 +7,14 @@ class TextBox {
   ArrayList<Character> userInput = new ArrayList<Character>();
   String displayInput = "";
   Button b;
-  
+  ListBox lb;
   TextBox(int x, int y, Button b) {
     posX = x + b.buttonWidth - 20;
     posY = y;
     drawTextbox();
     this.b = b;
+    lb = new ListBox(x,y,b);
+    
   }
   public void drawTextbox() {
     fill(235, 149, 50);

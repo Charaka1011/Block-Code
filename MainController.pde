@@ -29,6 +29,7 @@ class MainController {
         Button btemp = buttonArray.get(i);
         TextBox Temp = btemp.tb;
         Temp.drawTextbox();
+        Temp.lb.drawListbox();
       } else {
         isSmart.add(false);
       }
