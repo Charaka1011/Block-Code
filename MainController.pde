@@ -134,6 +134,7 @@ class MainController {
           b.tb.update(b.posX, b.posY);
         }
       }
+      canvas.resetCanvas();
     } else if (buildButton.overBlock()) {
     }
     

@@ -13,13 +13,13 @@ class Canvas {
     this.posY = posY;
     this.spacing = spacing;
     this.rows = this.height/spacing;
-    initializeIndices(rows);
+    this.indices = new int[rows];
+    resetIndices();
   }
 
-  void initializeIndices(int size)
+  void resetIndices()
   {
-    this.indices = new int[size];
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < indices.length; i++)
     {
       indices[i] = -1;
     }
@@ -120,5 +120,10 @@ class Canvas {
         removeNested(buttonCollection, index+1);
       }
     }
+  }
+  
+  void resetCanvas()
+  {
+    resetIndices();
   }
 }
