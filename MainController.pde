@@ -59,9 +59,9 @@ class MainController {
     if (lockedIndex >= 0)
     {
       Button b = buttons.getButton(lockedIndex);
-      if (mouseX>(width/3))
+      if (canvas.overCanvas())
       { 
-        b.posX = ((width/3) +10);
+        canvas.snapToCanvas(buttons, b);
       } else
       {
         b.posX = b.origX;
@@ -69,8 +69,9 @@ class MainController {
       }
 
       if (b.isSmart)
-
+      {
         b.tb.update(b.posX, b.posY);
+      }
     }
     lockedIndex = -1;
   }
@@ -83,10 +84,16 @@ class MainController {
         lockedIndex = buttons.getIndex(b); 
         b.posX = mouseX-b.buttonWidth/2;
         b.posY = mouseY-b.buttonHeight/2;
-
+        
+        if(canvas.overCanvas())
+        {
+          canvas.removeFromCanvas(buttons, b);
+        }
+        
         if (b.isSmart)
-
+        {
           b.tb.update(b.posX, b.posY);
+        }
       }
     } else
     {
@@ -97,8 +104,9 @@ class MainController {
         b.posY = mouseY-b.buttonHeight/2;
 
         if (b.isSmart)
-
+        {
           b.tb.update(b.posX, b.posY);
+        }
       }
     }  
     firstPress = false;

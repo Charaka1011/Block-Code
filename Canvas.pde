@@ -2,7 +2,7 @@ class Canvas {
   int width, height;
   int posX, posY;
   int[] indices;
-  int indent = 20;
+  int indent = 40;
   int rows, spacing;
 
   public Canvas(int posX, int posY, int width, int height, int spacing)
