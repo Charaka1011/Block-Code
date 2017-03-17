@@ -80,7 +80,6 @@ class Canvas {
         else if (button2.isSmart)
         {
           button.posX = this.posX + currentIndent + indent;
-          SmartButton sButton2 = (SmartButton) button2; 
           button2.addNested(button);
         } 
         else
