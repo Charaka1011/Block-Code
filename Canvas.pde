@@ -4,6 +4,7 @@ class Canvas {
   int[] indices;
   int indent = 40;
   int rows, spacing;
+  int freeIndex = 0;
 
   public Canvas(int posX, int posY, int width, int height, int spacing)
   {
@@ -13,13 +14,13 @@ class Canvas {
     this.posY = posY;
     this.spacing = spacing;
     this.rows = this.height/spacing;
-    initializeIndices(rows);
+    this.indices = new int[rows];
+    resetIndices();
   }
 
-  void initializeIndices(int size)
+  void resetIndices()
   {
-    this.indices = new int[size];
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < indices.length; i++)
     {
       indices[i] = -1;
     }
@@ -38,7 +39,6 @@ class Canvas {
 
   void snapToCanvas(ButtonCollection buttonCollection, Button button)
   {
-    // Also need to handle storing button inside SmartButtonCollection once nested
     int index = (mouseY-this.posY)/spacing;
     if (index >= indices.length || mouseY < this.posY)
     {
@@ -47,6 +47,7 @@ class Canvas {
     } else {
       if (indices[index] < 0)
       {
+        index = freeIndex;
         button.posY = this.posY + (index*spacing) + (spacing/2) - (button.buttonHeight/2);
         button.posX = this.posX;
       } else
@@ -70,15 +71,23 @@ class Canvas {
           currentIndent = button2.posX-this.posX;
         }
 
-        if (button2.isSmart)
+        Button previousButton = buttonCollection.getButton(indices[index-1]);
+        //Check if previous button (which isn't the button2) is indented, if not don't indent current button
+        if(previousButton != button2 && previousButton.posX < this.posX + currentIndent + indent)
+        {
+          button.posX = previousButton.posX;
+        }
+        else if (button2.isSmart)
         {
           button.posX = this.posX + currentIndent + indent;
-        } else
+        } 
+        else
         {
           button.posX = this.posX + currentIndent;
         }
       }
       indices[index] = buttonCollection.getIndex(button);
+      freeIndex = index+1;
     }
   }
 
@@ -91,7 +100,8 @@ class Canvas {
       if (indices[i] == index)
       {
         indices[i] = -1;
-        removeNested(buttonCollection, i+1);    
+        removeNested(buttonCollection, i+1); 
+        freeIndex = i;
         return;
       }
     }
@@ -106,9 +116,19 @@ class Canvas {
       {
         button.posX = button.origX;
         button.posY = button.origY;
+        if (button.isSmart)
+        {
+          button.tb.update(button.posX, button.posY);
+        }
         indices[index] = -1;
         removeNested(buttonCollection, index+1);
       }
     }
+  }
+  
+  void resetCanvas()
+  {
+    resetIndices();
+    freeIndex = 0;
   }
 }
