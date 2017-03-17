@@ -3,18 +3,13 @@ import java.util.ArrayList;
 
 Serial myPort;
 
-
 ButtonCollection buttons = new ButtonCollection();
-
 
 MenuButton exitButton;
 MenuButton buildButton;
 MenuButton resetButton;
 
-
-
 Canvas canvas;
-
 
 MainController mc = new MainController(buttons);
 MainView mv = new MainView();
@@ -78,7 +73,7 @@ void mousePressed(){
 }  
 
 void keyPressed(){
-  if(key>='0'&& key <= '9'||key == BACKSPACE || key==DELETE){
+  if(key>='0'&& key <= '9'||key == BACKSPACE || key==DELETE||(key == '<' || key == '>' || key == '=')){
     mc.keyPressedHandler();
   }
 }
