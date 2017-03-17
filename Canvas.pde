@@ -80,10 +80,12 @@ class Canvas {
         else if (button2.isSmart)
         {
           button.posX = this.posX + currentIndent + indent;
+          SmartButton sButton2 = (SmartButton) button2; 
+          button2.addNested(button);
         } 
         else
         {
-          button.posX = this.posX + currentIndent;
+          button.posX = this.posX;
         }
       }
       indices[index] = buttonCollection.getIndex(button);
@@ -100,8 +102,11 @@ class Canvas {
       if (indices[i] == index)
       {
         indices[i] = -1;
-        removeNested(buttonCollection, i+1); 
-        freeIndex = i;
+        removeNested(buttonCollection, i+1);
+        if(i < freeIndex)
+        {
+          freeIndex = i;
+        }
         return;
       }
     }
