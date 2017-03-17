@@ -5,9 +5,8 @@ class MainView {
   private final int button = color(30, 139, 195);
   private int posX = 0, posY = 0;
   private String val = "";
-  private boolean isSmart = false, blinkC = false;
-  private double time = 0,goal = 0;
-
+  private boolean isSmart = false;
+  
   public void drawButtons(ArrayList<Integer> pos, ArrayList<String> labels, ArrayList<Boolean> isSmart) {
     int j = 0;
     for (int i =0; i<labels.size(); i++) {

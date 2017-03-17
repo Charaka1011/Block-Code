@@ -4,6 +4,7 @@ class TextBox {
   int textWidth = width/12;
   int textHeight = height/20;
   String mainText = "i ";
+  String condStm = "";
   ArrayList<Character> userInput = new ArrayList<Character>();
   String displayInput = "";
   Button b;
@@ -13,6 +14,8 @@ class TextBox {
     posY = y;
     drawTextbox();
     this.b = b;
+   
+    
   }
   public void drawTextbox() {
     fill(235, 149, 50);
@@ -25,6 +28,7 @@ class TextBox {
     text(mainText, posX + textWidth/10, posY + textHeight*0.9);
     fill(0);
     text(displayInput, posX + textWidth/10+textWidth/2.3, posY + textHeight*0.8);
+    text(condStm,posX + textWidth/10+textWidth/6, posY + textHeight*0.8 );
   }
   public void update(int x, int y) {
     posX = x + b.buttonWidth - 20;
@@ -51,13 +55,16 @@ class TextBox {
     }else if(val == 'b'){
       displayInput = convertToString(userInput);
       drawTextbox();
-    }else{
-    if(userInput.size()<2){
+    }else if(userInput.size()<2){
       userInput.add(val);
     }
     displayInput = convertToString(userInput);
     drawTextbox();
   }
+  
+  
+  void setCondStmt(char val){
+    condStm =val+"";
   }
   
   String convertToString(ArrayList<Character> userInput){

@@ -131,9 +131,12 @@ class MainController {
         b.posY = b.origY;
         if (b.isSmart){
           b.tb.displayInput = "";
+          b.tb.condStm = "";
           b.tb.update(b.posX, b.posY);
+          
         }
       }
+      canvas.resetCanvas();
     } else if (buildButton.overBlock()) {
     }
     
@@ -141,9 +144,16 @@ class MainController {
   void keyPressedHandler(){
     if(key==BACKSPACE || key == DELETE){
      if(textBoxSelected!=null){
-      textBoxSelected.setUserInput('\0');
+        textBoxSelected.setUserInput('\0');
+      }
+    }else if (key == '<' || key == '>' || key == '='){
+      if(textBoxSelected!=null){
+        textBoxSelected.setCondStmt(key);
+       
+      }
     }
-    }else if(textBoxSelected!=null){
+    
+    else if(textBoxSelected!=null){
     textBoxSelected.setUserInput(key);
     }
     bcBool = false;
