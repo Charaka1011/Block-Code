@@ -58,10 +58,10 @@ class MainController {
     firstPress = true;
     if (lockedIndex >= 0)
     {
-      Button b = buttons.getButton(lockedIndex);
+      Button b = buttonCollection.getButton(lockedIndex);
       if (canvas.overCanvas())
       { 
-        canvas.snapToCanvas(buttons, b);
+        canvas.snapToCanvas(buttonCollection, b);
       } else
       {
         b.posX = b.origX;
@@ -78,17 +78,17 @@ class MainController {
   void mouseDraggedController() {
     if (firstPress)
     {
-      Button b = buttons.overButton();
+      Button b = buttonCollection.overButton();
       if (b != null)
-      {
-        lockedIndex = buttons.getIndex(b); 
-        b.posX = mouseX-b.buttonWidth/2;
-        b.posY = mouseY-b.buttonHeight/2;
-        
+      {      
         if(canvas.overCanvas())
         {
-          canvas.removeFromCanvas(buttons, b);
+          canvas.removeFromCanvas(buttonCollection, b);
         }
+        
+        lockedIndex = buttonCollection.getIndex(b); 
+        b.posX = mouseX-b.buttonWidth/2;
+        b.posY = mouseY-b.buttonHeight/2;
         
         if (b.isSmart)
         {
@@ -99,7 +99,7 @@ class MainController {
     {
       if (lockedIndex >= 0)
       {
-        Button b = buttons.getButton(lockedIndex);
+        Button b = buttonCollection.getButton(lockedIndex);
         b.posX = mouseX-b.buttonWidth/2;
         b.posY = mouseY-b.buttonHeight/2;
 
@@ -126,14 +126,14 @@ class MainController {
     if (exitButton.overBlock()) {
       exit();
     } else if (resetButton.overBlock()) {
-      for (Button b : buttons.getCollection()) {
+      for (Button b : buttonCollection.getCollection()) {
         b.posX = b.origX;
         b.posY = b.origY;
         if (b.isSmart){
           b.tb.displayInput = "";
           b.tb.condStm = "";
           b.tb.update(b.posX, b.posY);
-          
+          b.resetNested();
         }
       }
       canvas.resetCanvas();

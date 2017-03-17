@@ -1,4 +1,4 @@
-class Grid{
+/*class Grid{
   Button bRef = new Button();
   int padding =10, leftCol = 475;
   void drawGrid(){
@@ -8,4 +8,4 @@ class Grid{
       rect(leftCol, i*(padding + bRef.buttonHeight*10)+height/10,bRef.buttonWidth*20,bRef.buttonHeight*10,30);
     }
   }
-}
+}*/

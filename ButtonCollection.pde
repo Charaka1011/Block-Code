@@ -66,6 +66,17 @@ class ButtonCollection {
       if(b.isSmart){
         b.tb.setUserInput('b');
       }
-  }  
-}
+    }  
+  }
+  
+  void removeFromParent(Button button)
+  {
+    for(Button b : buttons)
+    {
+      if(b.isSmart)
+      {
+        b.removeNested(button); 
+      }
+    }
+  }
 }

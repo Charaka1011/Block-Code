@@ -52,6 +52,11 @@ class Button {
   
   void removeNested(Button button)
   {
-     nestedButtons.remove(button); 
+    nestedButtons.remove(button); 
+  }
+  
+  void resetNested()
+  {
+    nestedButtons.clear();
   }
 }
