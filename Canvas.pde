@@ -54,6 +54,7 @@ class Canvas {
       {
         int button2Index = indices[index];
         Button button2 = buttonCollection.getButton(button2Index);
+        boolean dontIndent = false;
         while (indices[index] >= 0)
         {
           index++;
@@ -63,6 +64,13 @@ class Canvas {
             button.posX = button.origX;
             return;
           }
+          if(indices[index] >= 0)
+          {
+            if(buttonCollection.getButton(indices[index]).posX <= button2.posX)
+            {
+              dontIndent = true;
+            }
+          }
         }
         button.posY = this.posY + (index*spacing) + (spacing/2) - (button.buttonHeight/2);
         int currentIndent = 0;
@@ -70,20 +78,15 @@ class Canvas {
         {
           currentIndent = button2.posX-this.posX;
         }
-
-        Button previousButton = buttonCollection.getButton(indices[index-1]);
-        //Check if previous button (which isn't the button2) is indented, if not don't indent current button
-        if(previousButton != button2 && previousButton.posX < this.posX + currentIndent + indent)
-        {
-          button.posX = previousButton.posX;
-        }
-        else if (button2.isSmart)
+        
+        if(button2.isSmart && !dontIndent)
         {
           button.posX = this.posX + currentIndent + indent;
+          button2.addNested(button);
         } 
         else
         {
-          button.posX = this.posX + currentIndent;
+          button.posX = this.posX;
         }
       }
       indices[index] = buttonCollection.getIndex(button);
@@ -93,15 +96,25 @@ class Canvas {
 
   void removeFromCanvas(ButtonCollection buttonCollection, Button button)
   {
-    // If button to remove from canvas has nested buttons, they also need to be removed.
     int index = buttonCollection.getIndex(button);
     for (int i = 0; i < indices.length; i++)
     {
       if (indices[i] == index)
       {
         indices[i] = -1;
-        removeNested(buttonCollection, i+1); 
-        freeIndex = i;
+        if(button.isSmart)
+        {
+          button.resetNested();
+        }
+        if(button.posX > this.posX)
+        {
+          buttonCollection.removeFromParent(button);
+        }
+        removeNested(buttonCollection, i+1);
+        if(i < freeIndex)
+        {
+          freeIndex = i;
+        }
         return;
       }
     }
@@ -116,9 +129,11 @@ class Canvas {
       {
         button.posX = button.origX;
         button.posY = button.origY;
+        buttonCollection.removeFromParent(button);
         if (button.isSmart)
         {
           button.tb.update(button.posX, button.posY);
+          button.resetNested();
         }
         indices[index] = -1;
         removeNested(buttonCollection, index+1);

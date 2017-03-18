@@ -9,7 +9,7 @@ class Button {
   String val = "";
   boolean isSmart = false;
   public TextBox tb;
-
+  ArrayList<Button> nestedButtons;
   
   Button(){
     //just for ref
@@ -34,7 +34,9 @@ class Button {
     this.val = val;
     this.isSmart = true;
     tb = new TextBox(this.posX, this.posY, this);
-   
+
+    nestedButtons = new ArrayList<Button>();
+
   }
 
   boolean overBlock() {
@@ -47,4 +49,18 @@ class Button {
     }
   }
   
+  void addNested(Button button)
+  {
+     nestedButtons.add(button); 
+  }
+  
+  void removeNested(Button button)
+  {
+    nestedButtons.remove(button); 
+  }
+  
+  void resetNested()
+  {
+    nestedButtons.clear();
+  }
 }

@@ -61,56 +61,50 @@ class MainController {
     firstPress = true;
     if (lockedIndex >= 0)
     {
-      Button b = buttons.getButton(lockedIndex);
+      Button b = buttonCollection.getButton(lockedIndex);
       if (canvas.overCanvas())
       { 
-        canvas.snapToCanvas(buttons, b);
+        canvas.snapToCanvas(buttonCollection, b);
       } else
       {
         b.posX = b.origX;
         b.posY = b.origY;
       }
 
-      
-        b.tb.update(b.posX, b.posY);
-      
+
+      b.tb.update(b.posX, b.posY);
     }
     lockedIndex = -1;
   }
   void mouseDraggedController() {
     if (firstPress)
     {
-      Button b = buttons.overButton();
+      Button b = buttonCollection.overButton();
       if (b != null)
       {
-        lockedIndex = buttons.getIndex(b); 
+        lockedIndex = buttonCollection.getIndex(b); 
         b.posX = mouseX-b.buttonWidth/2;
         b.posY = mouseY-b.buttonHeight/2;
-
+        b.tb.update(b.posX, b.posY);
         if (canvas.overCanvas())
         {
-          canvas.removeFromCanvas(buttons, b);
+          canvas.removeFromCanvas(buttonCollection, b);
+        }      
+      }
+    }else{
+        if (lockedIndex >= 0)
+        {
+          Button b = buttonCollection.getButton(lockedIndex);
+          b.posX = mouseX-b.buttonWidth/2;
+          b.posY = mouseY-b.buttonHeight/2;
+
+
+          b.tb.update(b.posX, b.posY);
         }
-
-       
-          b.tb.update(b.posX, b.posY);
-        
-      }
-    } else
-    {
-      if (lockedIndex >= 0)
-      {
-        Button b = buttons.getButton(lockedIndex);
-        b.posX = mouseX-b.buttonWidth/2;
-        b.posY = mouseY-b.buttonHeight/2;
-
-       
-          b.tb.update(b.posX, b.posY);
-        
-      }
-    }  
-    firstPress = false;
+      }  
+      firstPress = false;
   }
+
   void mousePressedController() {
 
     Button selectedButton = buttonCollection.overTextBox();
@@ -123,18 +117,19 @@ class MainController {
       textBoxSelected = null;
       buttonCollection.stopBlinking();
     }
-    
-    
+
+
     if (exitButton.overBlock()) {
       exit();
     } else if (resetButton.overBlock()) {
-      for (Button b : buttons.getCollection()) {
+      for (Button b : buttonCollection.getCollection()) {
         b.posX = b.origX;
         b.posY = b.origY;
-        for(int i = b.tb.userInput.size()-1;i>=0;i--) {
+
+        for (int i = b.tb.userInput.size()-1; i>=0; i--) {
           b.tb.userInput.remove(i);
         }
-        for(int i = b.tb.userInput.size()-1;i>=0;i--) {
+        for (int i = b.tb.userInput.size()-1; i>=0; i--) {
           b.tb.relativeValue.remove(i);
         }
         b.tb.displayInput = "";
