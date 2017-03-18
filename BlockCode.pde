@@ -40,11 +40,17 @@ void setup() {
 
 
   buttonCollection.addButton(new Button(width/100, height/10, "For", 1));
-  buttonCollection.addButton(new Button(width/100, height/10 + 100, "While", 1));
-  buttonCollection.addButton(new Button(width/100, height/10 + 200, "If", 1));
-  buttonCollection.addButton(new Button(width/100, height/10 + 300, "LED # on"));
-  buttonCollection.addButton(new Button(width/100, height/10 + 350, "LED # off"));
- buttonCollection.addButton(new Button(width/100, height/10 + 400, "Pause for:"));
+  buttonCollection.addButton(new Button(width/100, height/10 + 50, "While", 1));
+  buttonCollection.addButton(new Button(width/100, height/10 + 100, "If Light Sensor", 1));
+  buttonCollection.addButton(new Button(width/100, height/10 + 150, "If Temp Sensor", 1));
+  buttonCollection.addButton(new Button(width/100, height/10 + 200, "If acc-x", 1));
+  buttonCollection.addButton(new Button(width/100, height/10 + 250, "If acc-y", 1));
+  buttonCollection.addButton(new Button(width/100, height/10 + 300, "If acc-z", 1));
+  buttonCollection.addButton(new Button(width/100, height/10 + 350, "If Button Click", 1));
+  buttonCollection.addButton(new Button(width/100, height/10 + 400, "If", 1));
+  buttonCollection.addButton(new Button(width/100, height/10 + 450, "LED # on"));
+  buttonCollection.addButton(new Button(width/100, height/10 + 500, "LED # off"));
+  buttonCollection.addButton(new Button(width/100, height/10 + 550, "Pause for:"));
   
 
 }

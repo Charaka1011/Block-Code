@@ -16,18 +16,18 @@ class MainView {
       this.isSmart = isSmart.get(i);
       if (this.isSmart) {
         if (overBlock()) {
-          fill(250, 125, 34);
-          stroke(text);
+          fill(30, 130, 76);
+          noStroke();
         } else {
-          fill(249, 105, 14);
-          stroke(text);
+          fill(0, 177, 106);
+          noStroke();
         }
       } else if (overBlock()) {
-        fill(9, 52, 70);
-        stroke(text);
+        fill(68,108,179);
+        noStroke();
       } else {
-        fill(button);
-        stroke(text);
+        fill(30, 139, 195);
+        noStroke();
       }
       rect(this.posX, this.posY, this.Bwidth, this.Bheight, 30);
       fill(text);
