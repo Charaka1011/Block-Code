@@ -33,7 +33,7 @@ class MainView {
       fill(text);
       textSize(width/47);
       textAlign(CENTER, CENTER);
-      text(val, posX + width/9, posY + height/50);
+      text(val, posX + width/11, posY + height/50);
     }
   }
 

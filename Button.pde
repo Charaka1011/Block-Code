@@ -1,6 +1,6 @@
 class Button {
 
-  int buttonWidth = width/4, buttonHeight = height/17;
+  int buttonWidth = width/5, buttonHeight = height/17;
 
   final int text = color(236, 236, 236);
   final int button = color(30, 139, 195);
@@ -22,7 +22,9 @@ class Button {
     this.posY = posY;
     this.origX = posX;
     this.origY = posY;
-    this.val = val;
+    this.val = val; 
+    tb = new TextBox(this.posX, this.posY, this);
+   
   }
   Button (int posX, int posY, String val, int a) {
     this.posX = posX;
@@ -32,6 +34,7 @@ class Button {
     this.val = val;
     this.isSmart = true;
     tb = new TextBox(this.posX, this.posY, this);
+   
   }
 
   boolean overBlock() {

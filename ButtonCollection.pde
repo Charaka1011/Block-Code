@@ -38,11 +38,8 @@ class ButtonCollection {
   Button overTextBox(){
     for (Button b : buttons)
     {
-      if(b.isSmart){
         if (b.tb.overTextBox()){
-          
           return b;
-        }
       }
     }
      

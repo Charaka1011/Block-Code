@@ -6,7 +6,7 @@ class MainController {
   boolean firstPress = true;
   TextBox textBoxSelected = null;
   boolean bcBool = false;
-  double goal = 500,pastM;
+  double goal = 400, pastM;
 
   public MainController(ButtonCollection bc) {
     buttonCollection = bc;
@@ -28,9 +28,12 @@ class MainController {
         isSmart.add(true);
         Button btemp = buttonArray.get(i);
         TextBox Temp = btemp.tb;
-        Temp.drawTextbox();
+        Temp.drawSmartTextBox();
       } else {
         isSmart.add(false);
+        Button btemp = buttonArray.get(i);
+        TextBox Temp = btemp.tb;
+        Temp.drawTextBox();
       }
     }
     return isSmart;
@@ -68,10 +71,9 @@ class MainController {
         b.posY = b.origY;
       }
 
-      if (b.isSmart)
-      {
+      
         b.tb.update(b.posX, b.posY);
-      }
+      
     }
     lockedIndex = -1;
   }
@@ -84,16 +86,15 @@ class MainController {
         lockedIndex = buttons.getIndex(b); 
         b.posX = mouseX-b.buttonWidth/2;
         b.posY = mouseY-b.buttonHeight/2;
-        
-        if(canvas.overCanvas())
+
+        if (canvas.overCanvas())
         {
           canvas.removeFromCanvas(buttons, b);
         }
-        
-        if (b.isSmart)
-        {
+
+       
           b.tb.update(b.posX, b.posY);
-        }
+        
       }
     } else
     {
@@ -103,76 +104,91 @@ class MainController {
         b.posX = mouseX-b.buttonWidth/2;
         b.posY = mouseY-b.buttonHeight/2;
 
-        if (b.isSmart)
-        {
+       
           b.tb.update(b.posX, b.posY);
-        }
+        
       }
     }  
     firstPress = false;
   }
   void mousePressedController() {
-    TextBox tb;
-    Button smartB = buttonCollection.overTextBox();
-    if(smartB!=null){
-      tb = smartB.tb;
-      if(textBoxSelected!=null)
-      textBoxSelected.setUserInput('b');
-      textBoxSelected = tb;
-    }else{
+
+    Button selectedButton = buttonCollection.overTextBox();
+    if (selectedButton!=null) {
+      if (textBoxSelected!=null) {
+        textBoxSelected.setUserInput('b');
+      }
+      textBoxSelected = selectedButton.tb;
+    } else {
       textBoxSelected = null;
       buttonCollection.stopBlinking();
     }
+    
+    
     if (exitButton.overBlock()) {
       exit();
     } else if (resetButton.overBlock()) {
       for (Button b : buttons.getCollection()) {
         b.posX = b.origX;
         b.posY = b.origY;
-        if (b.isSmart){
-          b.tb.displayInput = "";
-          b.tb.condStm = "";
-          b.tb.update(b.posX, b.posY);
-          
+        for(int i = b.tb.userInput.size()-1;i>=0;i--) {
+          b.tb.userInput.remove(i);
         }
+        for(int i = b.tb.userInput.size()-1;i>=0;i--) {
+          b.tb.relativeValue.remove(i);
+        }
+        b.tb.displayInput = "";
+        b.tb.relativeInput = "";
+        b.tb.condStm = "=";
+        b.tb.update(b.posX, b.posY);
       }
       canvas.resetCanvas();
     } else if (buildButton.overBlock()) {
     }
-    
   }
-  void keyPressedHandler(){
-    if(key==BACKSPACE || key == DELETE){
-     if(textBoxSelected!=null){
-        textBoxSelected.setUserInput('\0');
-      }
-    }else if (key == '<' || key == '>' || key == '='){
-      if(textBoxSelected!=null){
-        textBoxSelected.setCondStmt(key);
-       
+  void keyPressedHandler() {
+    if (key>='0'&& key <= '9'||key == BACKSPACE || key==DELETE||(key == '<' || key == '>' || key == '=')||key=='i') {
+      if (textBoxSelected!=null) {
+
+        switch (key) {
+        case BACKSPACE:
+        case DELETE:
+          textBoxSelected.setUserInput('\0');
+          break;
+
+        case '<':
+        case '>':
+        case '=':
+          textBoxSelected.setCondStmt(key);
+          break;
+
+        case 'i':
+          textBoxSelected.setUserInput(key);
+          break;
+
+        default:
+          textBoxSelected.setUserInput(key);
+          break;
+        }
+        bcBool = false;
       }
     }
-    
-    else if(textBoxSelected!=null){
-    textBoxSelected.setUserInput(key);
-    }
-    bcBool = false;
   }
-  
-  void blink(){
-    if(!bcBool && millis()-pastM>goal){
+
+  void blink() {
+    if (!bcBool && millis()-pastM>goal) {
       pastM = millis();
-      if(textBoxSelected!=null){
+      if (textBoxSelected!=null) {
         textBoxSelected.displayInput = textBoxSelected.displayInput + "|";
+        textBoxSelected.relativeInput = textBoxSelected.relativeInput + "|";
         bcBool = true;
       }
-    }else if(millis()-pastM>goal){
+    } else if (millis()-pastM>goal) {
       pastM = millis();
-      if(textBoxSelected!=null){
+      if (textBoxSelected!=null) {
         bcBool = false;
         textBoxSelected.setUserInput('b');
       }
-      
     }
-}
+  }
 }

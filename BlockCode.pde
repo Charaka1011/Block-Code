@@ -39,12 +39,13 @@ void setup() {
   //Could be better to have variables rather than magic numbers
 
 
-  buttons.addButton(new Button(width/100, height/10, "For Loop", 1));
-  buttons.addButton(new Button(width/100, height/10 + 100, "While Loop", 1));
-  buttons.addButton(new Button(width/100, height/10 + 200, "If Selection", 1));
-  buttons.addButton(new Button(width/100, height/10 + 300, "Turn on LEDs"));
-  buttons.addButton(new Button(width/100, height/10 + 350, "Turn off LEDs"));
-
+  buttons.addButton(new Button(width/100, height/10, "For", 1));
+  buttons.addButton(new Button(width/100, height/10 + 100, "While", 1));
+  buttons.addButton(new Button(width/100, height/10 + 200, "If", 1));
+  buttons.addButton(new Button(width/100, height/10 + 300, "LED # on"));
+  buttons.addButton(new Button(width/100, height/10 + 350, "LED # off"));
+  buttons.addButton(new Button(width/100, height/10 + 400, "Pause for:"));
+  
 }
 
 void draw() {
@@ -57,7 +58,7 @@ void draw() {
   mc.drawButtons();
   mc.drawCanvas();
   mc.blink();
-  grid.drawGrid();
+  
 }
 
 void mouseReleased() {
@@ -73,7 +74,5 @@ void mousePressed(){
 }  
 
 void keyPressed(){
-  if(key>='0'&& key <= '9'||key == BACKSPACE || key==DELETE||(key == '<' || key == '>' || key == '=')){
-    mc.keyPressedHandler();
-  }
+  mc.keyPressedHandler();
 }
