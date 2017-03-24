@@ -193,12 +193,17 @@ class MainController {
   {
      for(Button button : buttons)
      {
-        //add button string
-        print(button.getOutputString() + "\n");
+        //add button string   
+        output.println(button.getOutputString());
+        output.flush();
         
        if(button.isSmart)
        {
-          parse(button.getNested()); 
+          output.print("{");
+          output.flush();
+          parse(button.getNested());
+          output.print("}");
+          output.flush();
        }
      }
      

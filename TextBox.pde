@@ -20,7 +20,7 @@ class TextBox {
     noStroke();
     rect(posX+10, posY, textWidth, textHeight,30);
     fill(200, 247, 197);
-    rect(posX+(textWidth*0.5)+10, posY, textWidth/2, textHeight,30);
+    rect(posX+(textWidth*0.5)+10, posY, textWidth/2+10, textHeight,30);
     fill(255);
     textSize(32);
     text(mainText, posX + textWidth/10+10, posY + textHeight*0.9);
@@ -34,15 +34,15 @@ class TextBox {
     noStroke();
     rect(posX+10, posY, textWidth, textHeight,30);
     fill(228, 241, 254);
-    rect(posX+(textWidth*0.5)+10, posY, textWidth/2, textHeight,30);
+    rect(posX+(textWidth*0.5)+10, posY, textWidth/2 +10, textHeight,30);
     fill(255);
     textSize(32);
     text("#", posX + textWidth/10+10, posY + textHeight*0.9);
     fill(0);
     if (relativeValue.size()==0) {
-      text(displayInput, posX + textWidth/10+textWidth/2.3, posY + textHeight*0.8);
+      text(displayInput, posX + textWidth/10+textWidth/2.3 + 10, posY + textHeight*0.8);
     } else {
-      text(relativeInput, posX + textWidth/10+textWidth/2.3, posY + textHeight*0.8);
+      text(relativeInput, posX + textWidth/10+textWidth/2.3+10, posY + textHeight*0.8);
     }
   }
   public void update(int x, int y) {
@@ -89,8 +89,9 @@ class TextBox {
         drawTextBox();
       }
     } else if (val == 'i') {
+      if(relativeValue.size()==0)
       relativeValue.add(val);
-    } else if (userInput.size()<2) {
+    } else if (userInput.size()<3) {
       userInput.add(val);
     }
 

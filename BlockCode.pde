@@ -2,7 +2,7 @@ import processing.serial.*;
 import java.util.ArrayList;
 
 Serial myPort;
-
+PrintWriter output;
 ButtonCollection buttonCollection = new ButtonCollection();
 
 MenuButton exitButton;
@@ -51,11 +51,13 @@ void setup() {
   buttonCollection.addButton(new Button(width/100, height/10 + 450, "LED # on"));
   buttonCollection.addButton(new Button(width/100, height/10 + 500, "LED # off"));
   buttonCollection.addButton(new Button(width/100, height/10 + 550, "Pause for:"));
-
+  
+ 
+  
 }
 
 void draw() {
-
+  output = createWriter ("./output/output.ino");
   fill(34, 49, 63);
   noStroke();
   background(103, 128, 159);
@@ -64,7 +66,7 @@ void draw() {
   mc.drawButtons();
   mc.drawCanvas();
   mc.blink();
-
+  output.close();
 }
 
 void mouseReleased() {
