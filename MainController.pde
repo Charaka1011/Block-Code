@@ -217,7 +217,6 @@ class MainController {
   {
      for(Button button : buttons)
      {
-       //add button string
        for(int i = 0; i < indent; i++)
        {
          write("\t");
@@ -233,6 +232,7 @@ class MainController {
              write("\t");
           }
           write("}");
+
        }
        write("\n");
      }

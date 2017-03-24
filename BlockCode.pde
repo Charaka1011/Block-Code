@@ -37,7 +37,6 @@ void setup() {
   //Values for canvas are worked out from MainController.drawCanvas() and ButtonHeight
   //Could be better to have variables rather than magic numbers
 
-
   ArrayList<String> outputStrings = new ArrayList<String>();
   //For
   outputStrings.add("for(int i = 0; i < ");
@@ -81,8 +80,8 @@ void setup() {
   outputStrings.clear();
 }
 
+
 void draw() {
-  
   fill(34, 49, 63);
   noStroke();
   background(103, 128, 159);
@@ -91,7 +90,7 @@ void draw() {
   mc.drawButtons();
   mc.drawCanvas();
   mc.blink();
-
+  output.close();
 }
 
 void mouseReleased() {
