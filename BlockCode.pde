@@ -75,7 +75,6 @@ void draw() {
   mc.drawButtons();
   mc.drawCanvas();
   mc.blink();
-  output.close();
 }
 
 void mouseReleased() {

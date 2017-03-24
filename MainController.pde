@@ -93,11 +93,11 @@ class MainController {
         {
           if(b.isSmart)
           {
-            buttonCollection.addButton(new Button(b.origX, b.origY, b.val, 1, b.outputStrings));
+            buttonCollection.addButton(new Button(b.origX, b.origY, b.val, 1, b.outputString));
           }
           else
           {
-            buttonCollection.addButton(new Button(b.origX, b.origY, b.val, b.outputStrings));
+            buttonCollection.addButton(new Button(b.origX, b.origY, b.val, b.outputString));
           }
         }
       }

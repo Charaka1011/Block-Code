@@ -43,7 +43,8 @@ class Button {
    
   String getOutputString()
   {
-    return output[0] + tb.displayInput.replace("|", "") + output[1];
+    return "";
+    //return output[0] + tb.displayInput.replace("|", "") + output[1];
   }
 
   boolean overBlock() {
