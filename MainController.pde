@@ -139,6 +139,8 @@ class MainController {
       }
       canvas.resetCanvas();
     } else if (buildButton.overBlock()) {
+      ArrayList<Button> baseButtons = canvas.getBaseButtons();
+      parse(baseButtons);
     }
   }
   void keyPressedHandler() {
@@ -185,5 +187,20 @@ class MainController {
         textBoxSelected.setUserInput('b');
       }
     }
+  }
+  
+  void parse(ArrayList<Button> buttons)
+  {
+     for(Button button : buttons)
+     {
+        //add button string
+        print(button.getOutputString() + "\n");
+        
+       if(button.isSmart)
+       {
+          parse(button.getNested()); 
+       }
+     }
+     
   }
 }

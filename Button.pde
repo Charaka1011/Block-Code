@@ -11,9 +11,23 @@ class Button {
   public TextBox tb;
   ArrayList<Button> nestedButtons;
   
+  String[] output = new String[2];
+  
   Button(){
     //just for ref
     this(0,0,"");
+  }
+  
+    
+  void setOutputStrings(String s1, String s2)
+  {
+     output[0] = s1;
+     output[1] = s2; 
+  }
+  
+  String getOutputString()
+  {
+    return output[0] + tb.displayInput + output[1];
   }
 
 
@@ -39,6 +53,7 @@ class Button {
 
   }
 
+
   boolean overBlock() {
     if (mouseX >= posX && mouseX <= posX+this.buttonWidth && mouseY >= posY && mouseY <= posY+this.buttonHeight) 
     {
@@ -62,5 +77,10 @@ class Button {
   void resetNested()
   {
     nestedButtons.clear();
+  }
+  
+  ArrayList<Button> getNested()
+  {
+     return nestedButtons; 
   }
 }

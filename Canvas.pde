@@ -146,4 +146,21 @@ class Canvas {
     resetIndices();
     freeIndex = 0;
   }
+  
+  ArrayList<Button> getBaseButtons()
+  {
+     ArrayList<Button> baseButtons = new ArrayList<Button>();
+     int i = 0;
+     while(indices[i] != -1 && i < indices.length)
+     {
+         Button button = buttonCollection.getButton(indices[i]);
+         if(button.posX == this.posX)
+         {
+            baseButtons.add(button);
+         }
+         i++;
+         //print("A");
+     }
+     return baseButtons;
+  }
 }
