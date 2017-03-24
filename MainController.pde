@@ -67,8 +67,7 @@ class MainController {
         canvas.snapToCanvas(buttonCollection, b);
       } else
       {
-        b.posX = b.origX;
-        b.posY = b.origY;
+        buttonCollection.removeButton(b);
       }
 
 
@@ -89,7 +88,18 @@ class MainController {
         if (canvas.overCanvas())
         {
           canvas.removeFromCanvas(buttonCollection, b);
-        }      
+        } 
+        else
+        {
+          if(b.isSmart)
+          {
+            buttonCollection.addButton(new Button(b.origX, b.origY, b.val, 1));
+          }
+          else
+          {
+            buttonCollection.addButton(new Button(b.origX, b.origY, b.val));
+          }
+        }
       }
     }else{
         if (lockedIndex >= 0)
@@ -139,8 +149,13 @@ class MainController {
       }
       canvas.resetCanvas();
     } else if (buildButton.overBlock()) {
+      output = createWriter("./output/output.ino");
+      printSetupFunction();
+      write("void loop() {\n");
       ArrayList<Button> baseButtons = canvas.getBaseButtons();
-      parse(baseButtons);
+      parse(baseButtons, 1);
+      write("}\n");
+      output.close();
     }
   }
   void keyPressedHandler() {
@@ -188,24 +203,44 @@ class MainController {
       }
     }
   }
+  void printSetupFunction()
+  {
+    write("void setup() {\n");
+    write("\tEngduinoLight.begin();\n");
+    write("\tEngduinoThermistor.begin();\n");
+    write("\tEngduinoButton.begin();\n");
+    write("\tEngduinoLEDs.begin();\n");
+    write("}\n\n");
+  }
   
-  void parse(ArrayList<Button> buttons)
+  void parse(ArrayList<Button> buttons, int indent)
   {
      for(Button button : buttons)
      {
-        //add button string   
-        output.println(button.getOutputString());
-        output.flush();
+       for(int i = 0; i < indent; i++)
+       {
+         write("\t");
+       }
+       write(button.getOutputString());
         
        if(button.isSmart)
-       {
-          output.print("{");
-          output.flush();
-          parse(button.getNested());
-          output.print("}");
-          output.flush();
+       {   
+          write(" {\n");
+          parse(button.getNested(), indent+1); 
+          for(int i = 0; i < indent; i++)
+          {  
+             write("\t");
+          }
+          write("}");
+
        }
+       write("\n");
      }
-     
+  }
+  
+  void write(String s)
+  {
+    output.print(s);
+    output.flush();
   }
 }

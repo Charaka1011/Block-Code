@@ -27,7 +27,7 @@ class Button {
   
   String getOutputString()
   {
-    return output[0] + tb.displayInput + output[1];
+    return output[0] + tb.displayInput.replace("|", "") + output[1];
   }
 
 
