@@ -2,7 +2,7 @@ import processing.serial.*;
 import java.util.ArrayList;
 
 Serial myPort;
-
+PrintWriter output;
 ButtonCollection buttonCollection = new ButtonCollection();
 
 MenuButton exitButton;
@@ -57,7 +57,7 @@ void setup() {
 }
 
 void draw() {
-
+  
   fill(34, 49, 63);
   noStroke();
   background(103, 128, 159);

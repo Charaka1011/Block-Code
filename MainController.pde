@@ -67,8 +67,7 @@ class MainController {
         canvas.snapToCanvas(buttonCollection, b);
       } else
       {
-        b.posX = b.origX;
-        b.posY = b.origY;
+        buttonCollection.removeButton(b);
       }
 
 
@@ -89,7 +88,18 @@ class MainController {
         if (canvas.overCanvas())
         {
           canvas.removeFromCanvas(buttonCollection, b);
-        }      
+        } 
+        else
+        {
+          if(b.isSmart)
+          {
+            buttonCollection.addButton(new Button(b.origX, b.origY, b.val, 1));
+          }
+          else
+          {
+            buttonCollection.addButton(new Button(b.origX, b.origY, b.val));
+          }
+        }
       }
     }else{
         if (lockedIndex >= 0)
@@ -139,11 +149,13 @@ class MainController {
       }
       canvas.resetCanvas();
     } else if (buildButton.overBlock()) {
+      output = createWriter("./output/output.ino");
       printSetupFunction();
       write("void loop() {\n");
       ArrayList<Button> baseButtons = canvas.getBaseButtons();
       parse(baseButtons, 1);
       write("}\n");
+      output.close();
     }
   }
   void keyPressedHandler() {
@@ -228,6 +240,7 @@ class MainController {
   
   void write(String s)
   {
-    print(s);
+    output.print(s);
+    output.flush();
   }
 }
