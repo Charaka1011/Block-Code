@@ -51,7 +51,9 @@ void setup() {
   buttonCollection.addButton(new Button(width/100, height/10 + 450, "LED # on"));
   buttonCollection.addButton(new Button(width/100, height/10 + 500, "LED # off"));
   buttonCollection.addButton(new Button(width/100, height/10 + 550, "Pause for:"));
-
+  
+  buttonCollection.getButton(0).setOutputStrings("for(int i = 0; i < ", "; i++)");
+  buttonCollection.getButton(9).setOutputStrings("EngduinoLEDS.setLED(", ",ON);");
 }
 
 void draw() {

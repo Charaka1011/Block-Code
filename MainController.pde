@@ -139,8 +139,11 @@ class MainController {
       }
       canvas.resetCanvas();
     } else if (buildButton.overBlock()) {
+      printSetupFunction();
+      write("void loop() {\n");
       ArrayList<Button> baseButtons = canvas.getBaseButtons();
-      parse(baseButtons);
+      parse(baseButtons, 1);
+      write("}\n");
     }
   }
   void keyPressedHandler() {
@@ -188,19 +191,43 @@ class MainController {
       }
     }
   }
+  void printSetupFunction()
+  {
+    write("void setup() {\n");
+    write("\tEngduinoLight.begin();\n");
+    write("\tEngduinoThermistor.begin();\n");
+    write("\tEngduinoButton.begin();\n");
+    write("\tEngduinoLEDs.begin();\n");
+    write("}\n\n");
+  }
   
-  void parse(ArrayList<Button> buttons)
+  void parse(ArrayList<Button> buttons, int indent)
   {
      for(Button button : buttons)
      {
-        //add button string
-        print(button.getOutputString() + "\n");
+       //add button string
+       for(int i = 0; i < indent; i++)
+       {
+         write("\t");
+       }
+       write(button.getOutputString());
         
        if(button.isSmart)
-       {
-          parse(button.getNested()); 
+       {   
+          write(" {\n");
+          parse(button.getNested(), indent+1); 
+          for(int i = 0; i < indent; i++)
+          {  
+             write("\t");
+          }
+          write("}");
        }
+       write("\n");
      }
-     
+  }
+  
+  void write(String s)
+  {
+    print(s);
   }
 }
