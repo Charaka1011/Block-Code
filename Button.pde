@@ -11,24 +11,24 @@ class Button {
   public TextBox tb;
   ArrayList<Button> nestedButtons;
   
-  ArrayList<String> outputStrings;
+  String outputString;
   
   Button(){
     //just for ref
     this(0,0,"", null);
   }
 
-  Button(int posX, int posY, String val, ArrayList<String> outputStrings) {
+  Button(int posX, int posY, String val, String outputString) {
     this.posX = posX;
     this.posY = posY;
     this.origX = posX;
     this.origY = posY;
     this.val = val; 
     tb = new TextBox(this.posX, this.posY, this);
-    this.outputStrings = outputStrings;
+    this.outputString = outputString;
    
   }
-  Button (int posX, int posY, String val, int a, ArrayList<String> outputStrings) {
+  Button (int posX, int posY, String val, int a, String outputString) {
     this.posX = posX;
     this.posY = posY;
     this.origX = posX;
@@ -36,7 +36,7 @@ class Button {
     this.val = val;
     this.isSmart = true;
     tb = new TextBox(this.posX, this.posY, this);
-    this.outputStrings = outputStrings;
+    this.outputString = outputString;
 
     nestedButtons = new ArrayList<Button>();
   }

@@ -8,6 +8,8 @@ ButtonCollection buttonCollection = new ButtonCollection();
 MenuButton exitButton;
 MenuButton buildButton;
 MenuButton resetButton;
+String cond = "@";
+String inputValue = "!";
 
 Canvas canvas;
 
@@ -37,47 +39,30 @@ void setup() {
   //Values for canvas are worked out from MainController.drawCanvas() and ButtonHeight
   //Could be better to have variables rather than magic numbers
 
-  ArrayList<String> outputStrings = new ArrayList<String>();
   //For
-  outputStrings.add("for(int i = 0; i < ");
-  outputStrings.add("; i++)");
-  buttonCollection.addButton(new Button(width/100, height/10, "For", 1, outputStrings));
-  outputStrings.clear();
+  buttonCollection.addButton(new Button(width/100, height/10, "For", 1,  "for(int ~ = 0; ~ " + cond + inputValue + "; ~++)"));
   //While
-  buttonCollection.addButton(new Button(width/100, height/10 + 50, "While", 1, outputStrings));
-  outputStrings.clear();
+  buttonCollection.addButton(new Button(width/100, height/10 + 50, "While", 1, "while(~ " + cond + inputValue + ")"));
   //Light
-  buttonCollection.addButton(new Button(width/100, height/10 + 100, "If Light Sensor", 1, outputStrings));
-  outputStrings.clear();
+  buttonCollection.addButton(new Button(width/100, height/10 + 100, "If Light Sensor", 1, "if(EngduinoLight.lightLevel() " + cond + inputValue + ")"));
   //Temp
-  buttonCollection.addButton(new Button(width/100, height/10 + 150, "If Temp Sensor", 1, outputStrings));
-  outputStrings.clear();
+  buttonCollection.addButton(new Button(width/100, height/10 + 150, "If Temp Sensor", 1, "if(EngduinoThermistor.temperature() " + cond + inputValue + ")"));
   //acc-x
-  buttonCollection.addButton(new Button(width/100, height/10 + 200, "If acc-x", 1, outputStrings));
-  outputStrings.clear();
+  buttonCollection.addButton(new Button(width/100, height/10 + 200, "If acc-x", 1, "float acclerations[3];\nEngduinoAcclerometer.xyz(accelerations);\nif(accelerations[0] " + cond + inputValue + ")"));
   //acc-y
-  buttonCollection.addButton(new Button(width/100, height/10 + 250, "If acc-y", 1, outputStrings));
-  outputStrings.clear();
+  buttonCollection.addButton(new Button(width/100, height/10 + 250, "If acc-y", 1, "float acclerations[3];\nEngduinoAcclerometer.xyz(accelerations);\nif(accelerations[1] " + cond + inputValue + ")"));
   //acc-z
-  buttonCollection.addButton(new Button(width/100, height/10 + 300, "If acc-z", 1, outputStrings));
-  outputStrings.clear();
+  buttonCollection.addButton(new Button(width/100, height/10 + 300, "If acc-z", 1, "float acclerations[3];\nEngduinoAcclerometer.xyz(accelerations);\nif(accelerations[2] " + cond + inputValue + ")"));
   //Button click
-  buttonCollection.addButton(new Button(width/100, height/10 + 350, "If Button Click", 1, outputStrings));
-  outputStrings.clear();
+  buttonCollection.addButton(new Button(width/100, height/10 + 350, "If Button Click", 1, "if(EnguinoButton.isPressed() == " + inputValue + ")"));
   //If
-  buttonCollection.addButton(new Button(width/100, height/10 + 400, "If", 1, outputStrings));
-  outputStrings.clear();
+  buttonCollection.addButton(new Button(width/100, height/10 + 400, "If", 1, "if(~ " + cond + inputValue + ")"));
   //LED On
-  outputStrings.add("EngduinoLEDS.setLED(");
-  outputStrings.add(",ON);");
-  buttonCollection.addButton(new Button(width/100, height/10 + 450, "LED # on", outputStrings));
-  outputStrings.clear();
+  buttonCollection.addButton(new Button(width/100, height/10 + 450, "LED # on", "EngduinoLEDs.setLED(" + inputValue + ", WHITE);"));
   //LED Off
-  buttonCollection.addButton(new Button(width/100, height/10 + 500, "LED # off", outputStrings));
-  outputStrings.clear();
+  buttonCollection.addButton(new Button(width/100, height/10 + 500, "LED # off", "EngduinoLEDs.setLED(" + inputValue + ", OFF);"));
   //Pause
-  buttonCollection.addButton(new Button(width/100, height/10 + 550, "Pause for:", outputStrings));
-  outputStrings.clear();
+  buttonCollection.addButton(new Button(width/100, height/10 + 550, "Pause for:", "delay(" + inputValue + ");"));
 }
 
 
