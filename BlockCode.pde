@@ -10,7 +10,7 @@ MenuButton buildButton;
 MenuButton resetButton;
 String cond = "@";
 String inputValue = "!";
-
+char incrementer = 'a';
 Canvas canvas;
 
 MainController mc = new MainController(buttonCollection);

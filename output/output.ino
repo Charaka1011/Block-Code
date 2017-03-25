@@ -14,9 +14,6 @@ void setup() {
 }
 
 void loop() {
-	for(int ~ = 0; ~ @!; ~++)5 {
-		if(EngduinoLight.lightLevel() @!)2 {
-			EngduinoLEDs.setLED(!, WHITE);
-		}
+	for(int a = 0; a =1; a++) {
 	}
 }

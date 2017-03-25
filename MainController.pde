@@ -132,6 +132,7 @@ class MainController {
     if (exitButton.overBlock()) {
       exit();
     } else if (resetButton.overBlock()) {
+      incrementer = 'a';
       for (Button b : buttonCollection.getCollection()) {
         b.posX = b.origX;
         b.posY = b.origY;

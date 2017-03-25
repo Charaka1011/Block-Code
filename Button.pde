@@ -43,7 +43,8 @@ class Button {
    
   String getOutputString()
   {
-    return outputString + tb.displayInput.replace("|", "");
+   
+    return outputString.replace("~",""+incrementer++).replace("@",tb.condStm).replace("!", tb.displayInput.replace("|", ""));
   }
 
   boolean overBlock() {
