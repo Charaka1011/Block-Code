@@ -1,4 +1,4 @@
-`class Button {
+class Button {
 
   int buttonWidth = width/5, buttonHeight = height/17;
 
@@ -43,7 +43,7 @@
    
   String getOutputString()
   {
-    return output[0] + tb.displayInput.replace("|", "") + output[1];
+    return outputString + tb.displayInput.replace("|", "");
   }
 
   boolean overBlock() {
