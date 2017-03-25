@@ -93,11 +93,11 @@ class MainController {
         {
           if(b.isSmart)
           {
-            buttonCollection.addButton(new Button(b.origX, b.origY, b.val, 1));
+            buttonCollection.addButton(new Button(b.origX, b.origY, b.val, 1, b.outputStrings));
           }
           else
           {
-            buttonCollection.addButton(new Button(b.origX, b.origY, b.val));
+            buttonCollection.addButton(new Button(b.origX, b.origY, b.val, b.outputStrings));
           }
         }
       }
@@ -205,11 +205,19 @@ class MainController {
   }
   void printSetupFunction()
   {
+    write("#include \"EngduinoLight.h\" \n");
+    write("#include \"EngduinoThermistor.h\" \n");
+    write("#include \"EngduinoButton.h\" \n");
+    write("#include \"EngduinoLEDs.h\" \n");
+    write("#include \"EngduinoAccelerometer.h\" \n");
+    write("#include \"Wire.h\" \n");
+    write("\n");
     write("void setup() {\n");
     write("\tEngduinoLight.begin();\n");
     write("\tEngduinoThermistor.begin();\n");
     write("\tEngduinoButton.begin();\n");
     write("\tEngduinoLEDs.begin();\n");
+    write("\tEngduinoAccelerometer.begin();\n");
     write("}\n\n");
   }
   

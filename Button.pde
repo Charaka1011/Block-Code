@@ -11,36 +11,24 @@
   public TextBox tb;
   ArrayList<Button> nestedButtons;
   
-  String[] output = new String[2];
+  String outputString;
   
   Button(){
     //just for ref
-    this(0,0,"");
-  }
-  
-    
-  void setOutputStrings(String s1, String s2)
-  {
-     output[0] = s1;
-     output[1] = s2; 
-  }
-  
-  String getOutputString()
-  {
-    return output[0] + tb.displayInput.replace("|", "") + output[1];
+    this(0,0,"", null);
   }
 
-
-  Button(int posX, int posY, String val) {
+  Button(int posX, int posY, String val, String outputString) {
     this.posX = posX;
     this.posY = posY;
     this.origX = posX;
     this.origY = posY;
     this.val = val; 
     tb = new TextBox(this.posX, this.posY, this);
+    this.outputString = outputString;
    
   }
-  Button (int posX, int posY, String val, int a) {
+  Button (int posX, int posY, String val, int a, String outputString) {
     this.posX = posX;
     this.posY = posY;
     this.origX = posX;
@@ -48,11 +36,15 @@
     this.val = val;
     this.isSmart = true;
     tb = new TextBox(this.posX, this.posY, this);
+    this.outputString = outputString;
 
     nestedButtons = new ArrayList<Button>();
-
   }
-
+   
+  String getOutputString()
+  {
+    return output[0] + tb.displayInput.replace("|", "") + output[1];
+  }
 
   boolean overBlock() {
     if (mouseX >= posX && mouseX <= posX+this.buttonWidth && mouseY >= posY && mouseY <= posY+this.buttonHeight) 
