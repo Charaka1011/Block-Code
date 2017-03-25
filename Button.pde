@@ -1,4 +1,4 @@
-class Button {
+`class Button {
 
   int buttonWidth = width/5, buttonHeight = height/17;
 
