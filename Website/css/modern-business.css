@@ -73,6 +73,15 @@ footer {
     margin: 50px 0;
 }
 
+.easy {
+  color: #26A65B;
+}
+.medium {
+  color: #F4D03F;
+}
+.hard {
+  color: #EC644B;
+}
 /* Responsive Styles */
 
 @media(max-width:991px) {

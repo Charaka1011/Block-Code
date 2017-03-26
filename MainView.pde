@@ -6,6 +6,7 @@ class MainView {
   private int posX = 0, posY = 0;
   private String val = "";
   private boolean isSmart = false;
+  private String buildTerminalText = "Build Terminal:";
   
   public void drawButtons(ArrayList<Integer> pos, ArrayList<String> labels, ArrayList<Boolean> isSmart) {
     int j = 0;
@@ -59,8 +60,15 @@ class MainView {
     fill(255);
     textSize(height/40);
     textAlign(LEFT);
-    text("Build terminal: ", 5, height/25 + height - (height/10));
+    text(buildTerminalText, 5, height/25 + height - (height/10));
   }
- 
- 
+  
+  public void appendBuildTerminalText(String s)
+  {
+    this.buildTerminalText = buildTerminalText + s;
   }
+  public void resetBuildTerminalText()
+  {
+    this.buildTerminalText = "Build Terminal:";
+  }
+}

@@ -132,6 +132,7 @@ class MainController {
     if (exitButton.overBlock()) {
       exit();
     } else if (resetButton.overBlock()) {
+      incrementer = 'a';
       for (Button b : buttonCollection.getCollection()) {
         b.posX = b.origX;
         b.posY = b.origY;
@@ -148,7 +149,10 @@ class MainController {
         b.tb.update(b.posX, b.posY);
       }
       canvas.resetCanvas();
+      mainView.resetBuildTerminalText();
     } else if (buildButton.overBlock()) {
+      mainView.resetBuildTerminalText();
+      mainView.appendBuildTerminalText(" Build started");
       output = createWriter("./output/output.ino");
       printSetupFunction();
       write("void loop() {\n");
@@ -156,6 +160,7 @@ class MainController {
       parse(baseButtons, 1);
       write("}\n");
       output.close();
+      mainView.appendBuildTerminalText("\nBuild complete, output file saved to output/output.ino");
     }
   }
   void keyPressedHandler() {
