@@ -11,6 +11,7 @@ MenuButton resetButton;
 String cond = "@";
 String inputValue = "!";
 char incrementer = 'a';
+char previousI = 'a';
 Canvas canvas;
 
 MainController mc = new MainController(buttonCollection);

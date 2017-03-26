@@ -43,9 +43,18 @@ class Button {
    
   String getOutputString()
   {
-   
-    return outputString.replace("~",""+incrementer++).replace("@",tb.condStm).replace("!", tb.displayInput.replace("|", ""));
-  }
+    if(outputString.indexOf("~")!=-1){
+      
+      incrementer++;
+      previousI = incrementer;
+      print("i = "+incrementer+" prev i = "+previousI+" \n");
+    }
+    if (isSmart){
+      return outputString.replace("~",""+incrementer).replace("@",tb.condStm.replace("=","==")).replace("!", tb.displayInput.replace("|", "").replace("i",previousI+""));
+    }else{
+      return outputString.replace("~",""+incrementer).replace("@",tb.condStm.replace("=","==")).replace("!", tb.relativeInput.replace("|", "").replace("i",previousI+""));
+    }  
+}
 
   boolean overBlock() {
     if (mouseX >= posX && mouseX <= posX+this.buttonWidth && mouseY >= posY && mouseY <= posY+this.buttonHeight) 

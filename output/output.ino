@@ -14,4 +14,9 @@ void setup() {
 }
 
 void loop() {
+	for(int b = 0; b ==500; b++) {
+		while(c <50) {
+			EngduinoLEDs.setLED(c, WHITE);
+		}
+	}
 }
