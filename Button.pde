@@ -50,9 +50,13 @@ class Button {
       print("i = "+incrementer+" prev i = "+previousI+" \n");
     }
     if (isSmart){
-      return outputString.replace("~",""+incrementer).replace("@",tb.condStm.replace("=","==")).replace("!", tb.displayInput.replace("|", "").replace("i",previousI+""));
+      return outputString.replace("~",""+incrementer).replace("@",tb.condStm.replace("=","==")).replace("!", tb.displayInput.replace("|", ""));
     }else{
+      if (tb.relativeValue.size()!=0){
       return outputString.replace("~",""+incrementer).replace("@",tb.condStm.replace("=","==")).replace("!", tb.relativeInput.replace("|", "").replace("i",previousI+""));
+      }else{
+        return outputString.replace("~",""+incrementer).replace("@",tb.condStm.replace("=","==")).replace("!", tb.displayInput.replace("|", ""));
+      }
     }  
 }
 
