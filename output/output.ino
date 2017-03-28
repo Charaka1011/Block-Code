@@ -14,7 +14,7 @@ void setup() {
 }
 
 void loop() {
-	for(int b = 0; b ==56; b++) {
-		EngduinoLEDs.setLED(, WHITE);
+	if(EngduinoThermistor.temperature() ==) {
 	}
+	EngduinoLEDs.setLED(, WHITE);
 }
