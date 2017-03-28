@@ -1,7 +1,5 @@
-import processing.serial.*;
 import java.util.ArrayList;
 
-Serial myPort;
 PrintWriter output;
 ButtonCollection buttonCollection = new ButtonCollection();
 

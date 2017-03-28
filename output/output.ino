@@ -14,7 +14,17 @@ void setup() {
 }
 
 void loop() {
+<<<<<<< HEAD
 	if(EngduinoThermistor.temperature() ==) {
 	}
 	EngduinoLEDs.setLED(, WHITE);
+=======
+	if(EngduinoThermistor.temperature() >10) {
+		EngduinoLEDs.setLED(2, OFF);
+		EngduinoLEDs.setLED(2, OFF);
+		EngduinoLEDs.setLED(4, WHITE);
+	}
+	EngduinoLEDs.setLED(4, OFF);
+	EngduinoLEDs.setLED(2, WHITE);
+>>>>>>> fa78980c2842b080d44e43d32ab6700d0fb3d801
 }
