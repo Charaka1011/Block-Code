@@ -53,7 +53,7 @@ void setup() {
   //acc-z
   buttonCollection.addButton(new Button(width/100, height/10 + 300, "If acc-z", 1, "float acclerations[3];\nEngduinoAcclerometer.xyz(accelerations);\nif(accelerations[2] " + cond + inputValue + ")"));
   //Button click
-  buttonCollection.addButton(new Button(width/100, height/10 + 350, "If Button Click", 1, "if(EnguinoButton.isPressed() == " + inputValue + ")"));
+  buttonCollection.addButton(new Button(width/100, height/10 + 350, "If Button Click", 1, "if(EngduinoButton.wasPressed() == " + inputValue + ")"));
   //If
   buttonCollection.addButton(new Button(width/100, height/10 + 400, "If", 1, "if(~ " + cond + inputValue + ")"));
   //LED On
