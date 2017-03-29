@@ -14,6 +14,10 @@ void setup() {
 }
 
 void loop() {
-	for(int b = 0; b ==; b++) {
+	if(EngduinoButton.wasPressed() == 1) {
+		EngduinoLEDs.setLED(15, WHITE);
+		delay(1000);
 	}
+	EngduinoLEDs.setLED(15, OFF);
+	delay(1000);
 }

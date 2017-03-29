@@ -52,10 +52,11 @@ class Button {
     if (isSmart){
       return outputString.replace("~",""+incrementer).replace("@",tb.condStm.replace("=","==")).replace("!", tb.displayInput.replace("|", ""));
     }else{
+      
       if (tb.relativeValue.size()!=0){
-      return outputString.replace("~",""+incrementer).replace("@",tb.condStm.replace("=","==")).replace("!", tb.relativeInput.replace("|", "").replace("i",previousI+""));
+      return outputString.replace("*",tb.relativeInput.replace("|", "")).replace("i",previousI+"").replace("~",""+incrementer).replace("@",tb.condStm.replace("=","==")).replace("!", tb.relativeInput.replace("|", "").replace("i",previousI+""));
       }else{
-        return outputString.replace("~",""+incrementer).replace("@",tb.condStm.replace("=","==")).replace("!", tb.displayInput.replace("|", ""));
+        return outputString.replace("*",str(Integer.parseInt(tb.displayInput.replace("|", ""))*1000)).replace("~",""+incrementer).replace("@",tb.condStm.replace("=","==")).replace("!", tb.displayInput.replace("|", ""));
       }
     }  
 }
