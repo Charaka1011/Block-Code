@@ -61,7 +61,7 @@ void setup() {
   //LED Off
   buttonCollection.addButton(new Button(width/100, height/10 + 500, "LED # off", "EngduinoLEDs.setLED(" + inputValue + ", OFF);"));
   //Pause
-  buttonCollection.addButton(new Button(width/100, height/10 + 550, "Pause for:", "delay(*);"));
+  buttonCollection.addButton(new Button(width/100, height/10 + 550, "Pause for:", "delay("+inputValue+");"));
 }
 
 
